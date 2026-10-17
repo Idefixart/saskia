@@ -1,0 +1,5 @@
+# Dev-only files, not needed inside the installed extension (anchored to the bundle root)
+/test/
+/scripts/build-sprite.mjs
+/buddy-e2e*
+/*.jpg

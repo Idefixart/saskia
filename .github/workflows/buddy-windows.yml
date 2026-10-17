@@ -1,0 +1,42 @@
+name: buddy-windows
+
+# Real Windows check for laurin-buddy: unit tests, then the PowerShell/WinForms overlay on the
+# runner's desktop. The screenshots (buddy-e2e*.png) show whether Pixel-Laurin's arrow hits the centre.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'buddy/**'
+      - 'assets/js/sprites.js'
+      - '.github/workflows/buddy-windows.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: buddy
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+      - name: Install
+        run: npm ci
+      - name: Unit tests
+        run: node --test
+      - name: Build sprite from the site's pixel art
+        run: node scripts/build-sprite.mjs
+      - name: End-to-end on the Windows desktop
+        run: node test/e2e-windows.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: buddy-e2e
+          path: buddy/buddy-e2e*
+          if-no-files-found: warn

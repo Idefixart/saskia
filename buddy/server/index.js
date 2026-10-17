@@ -104,6 +104,7 @@ server.registerTool(
     if (!overlay.supported) return fail('Der schwebende Buddy läuft nur unter Windows.');
     if (!lastShot) return fail('Erst bildschirm_ansehen aufrufen.');
     const target = toScreen(lastShot, x, y);
+    log(`point (${x}, ${y}) in the screenshot -> screen pixel (${target.x}, ${target.y})`);
     try {
       await overlay.send({ cmd: 'point', x: target.x, y: target.y, text: bubble });
       buddyVisible = true;

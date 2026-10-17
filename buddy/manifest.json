@@ -1,0 +1,43 @@
+{
+  "manifest_version": "0.3",
+  "name": "laurin-buddy",
+  "display_name": "Pixel-Laurin Buddy",
+  "version": "1.0.0",
+  "description": "Pixel-Laurin schwebt über deinen Bildschirm und zeigt dir mit Pfeil und Sprechblase, wo du klicken musst. Er klickt und tippt nie selbst.",
+  "long_description": "Frag Claude einfach: \"Zeig mir, wo ich klicken muss\" oder \"zeig mal\". Claude schaut sich dann deinen Bildschirm an (nur wenn du fragst, die Desktop-App fragt vorher um Erlaubnis) und Pixel-Laurin fliegt zu der richtigen Stelle, zeigt mit einem Pfeil darauf und sagt dir in einer Sprechblase, was zu tun ist. Du klickst selbst und schreibst \"weiter\", dann kommt der nächste Schritt. Der Buddy läuft unter Windows, braucht nichts extra (PowerShell ist schon da) und verschwindet von allein nach zwei Minuten Ruhe. Ein Fan-Geschenk von Laurin, nicht von Anthropic.",
+  "author": {
+    "name": "Laurin"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "bildschirm_ansehen",
+      "description": "Macht einen Screenshot vom Monitor unter der Maus, damit Claude sieht, was du siehst."
+    },
+    {
+      "name": "zeigen",
+      "description": "Pixel-Laurin fliegt zu einer Stelle und zeigt mit Pfeil und Sprechblase darauf. Ein Schritt pro Aufruf, er klickt nie selbst."
+    },
+    {
+      "name": "ausblenden",
+      "description": "Pixel-Laurin verschwindet vom Bildschirm."
+    }
+  ],
+  "keywords": ["zeigen", "bildschirm", "hilfe", "buddy", "windows", "pixel-laurin"],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": ["win32", "darwin"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

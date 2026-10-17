@@ -1,4 +1,4 @@
-// Builds server/sprite.json for the Windows overlay from the website's shared pixel art
+// Builds server/sprite.json (+ icon.png) for the Windows overlay from the website's shared pixel art
 // (../../assets/js/sprites.js): { name, palette, rows, anchor } for laurinPoint,
 // falling back to laurinWave, then clawd. If the site sprites are missing or empty,
 // writes a small built-in Clawd-orange blob so the buddy still works.
@@ -6,10 +6,12 @@
 import { existsSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { deflateSync } from 'node:zlib';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const SOURCE = join(here, '..', '..', 'assets', 'js', 'sprites.js');
 const TARGET = join(here, '..', 'server', 'sprite.json');
+const ICON = join(here, '..', 'icon.png');
 const PREFERRED = ['laurinPoint', 'laurinWave', 'clawd'];
 const HEX = /^#[0-9a-fA-F]{6}$/;
 const TRANSPARENCY_KEY = '#FF00FF';
@@ -108,10 +110,64 @@ function isMain() {
   return process.platform === 'win32' ? self.toLowerCase() === invoked.toLowerCase() : self === invoked;
 }
 
+const CRC_TABLE = Array.from({ length: 256 }, (_, n) => {
+  let c = n;
+  for (let k = 0; k < 8; k += 1) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+  return c >>> 0;
+});
+
+function crc32(buf) {
+  let crc = 0xffffffff;
+  for (const byte of buf) crc = CRC_TABLE[(crc ^ byte) & 0xff] ^ (crc >>> 8);
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+function pngChunk(type, data) {
+  const length = Buffer.alloc(4);
+  length.writeUInt32BE(data.length);
+  const body = Buffer.concat([Buffer.from(type, 'ascii'), data]);
+  const crc = Buffer.alloc(4);
+  crc.writeUInt32BE(crc32(body));
+  return Buffer.concat([length, body, crc]);
+}
+
+// The extension icon: the sprite as crisp pixel art, centred on a transparent square.
+export function renderIcon({ palette, rows }, size = 512) {
+  const scale = Math.floor((size * 0.92) / Math.max(rows.length, rows[0].length));
+  const offX = Math.floor((size - rows[0].length * scale) / 2);
+  const offY = Math.floor((size - rows.length * scale) / 2);
+  const raw = Buffer.alloc((size * 4 + 1) * size); // RGBA rows, each with a leading filter byte (0)
+  rows.forEach((row, y) => {
+    [...row].forEach((key, x) => {
+      if (key === '.') return;
+      const hex = palette[key];
+      const rgba = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).concat(255);
+      for (let py = 0; py < scale; py += 1) {
+        for (let px = 0; px < scale; px += 1) {
+          const at = (offY + y * scale + py) * (size * 4 + 1) + 1 + (offX + x * scale + px) * 4;
+          raw.set(rgba, at);
+        }
+      }
+    });
+  });
+  const header = Buffer.alloc(13);
+  header.writeUInt32BE(size, 0);
+  header.writeUInt32BE(size, 4);
+  header[8] = 8; // bit depth
+  header[9] = 6; // RGBA
+  return Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    pngChunk('IHDR', header),
+    pngChunk('IDAT', deflateSync(raw)),
+    pngChunk('IEND', Buffer.alloc(0)),
+  ]);
+}
+
 if (isMain()) {
   const sprite = await buildSprite();
   writeFileSync(TARGET, `${JSON.stringify(sprite, null, 2)}\n`);
+  writeFileSync(ICON, renderIcon(sprite));
   console.log(
-    `build-sprite: wrote ${TARGET} from "${sprite.name}" (${sprite.rows[0].length}x${sprite.rows.length}, anchor ${sprite.anchor.x},${sprite.anchor.y})`,
+    `build-sprite: wrote ${TARGET} and ${ICON} from "${sprite.name}" (${sprite.rows[0].length}x${sprite.rows.length}, anchor ${sprite.anchor.x},${sprite.anchor.y})`,
   );
 }
