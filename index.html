@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/world.css">
 <link rel="stylesheet" href="assets/css/chapters.css">
+<link rel="stylesheet" href="assets/css/life.css">
 <link rel="stylesheet" href="assets/css/print.css" media="print">
 <script type="module" src="assets/js/main.js"></script>
 </head>
@@ -58,6 +59,8 @@
         </g>
       </svg>
     </div>
+
+    <div class="birds" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <div class="flight">
       <div class="flight-inner">
@@ -184,6 +187,7 @@
         <path d="M1300 70 q5 -18 10 0 q4 -13 8 0 q5 -16 9 0 z"/>
         <path d="M640 128 q5 -16 10 0 q4 -12 8 0 q5 -14 9 0 z"/>
       </g>
+      <g class="car-drive">
       <g class="car" transform="translate(1060 168)">
         <path class="car-body" d="M6 38 C 6 26 16 22 34 20 L52 8 C 56 5 60 4 66 4 L96 4 C 102 4 106 8 108 14 L114 22 C 130 23 140 28 140 38 L140 46 L6 46 Z"/>
         <path class="car-glass" d="M56 10 L64 20 L94 20 L92 10 Z"/>
@@ -194,11 +198,15 @@
         <circle class="car-hub" cx="112" cy="46" r="4"/>
         <rect class="car-light" x="132" y="30" width="8" height="6" rx="2"/>
       </g>
+      </g>
     </svg>
 
     <div class="crew">
       <p class="bubble hero-bubble">Willkommen in deiner Claude-Stadt!</p>
-      <span class="crew-laurin" data-sprite="laurinWave" data-title="Pixel-Laurin winkt"></span>
+      <span class="crew-laurin">
+        <span class="wave-a" data-sprite="laurinWave" data-title="Pixel-Laurin winkt"></span>
+        <span class="wave-b" data-sprite="laurinWaveB"></span>
+      </span>
       <span class="crew-clawd" data-sprite="clawd" data-title="Clawd mit Partyhut"></span>
     </div>
 
@@ -213,11 +221,415 @@
     <a class="scroll-cue" href="#post">Runter in die Stadt</a>
   </section>
 
-  <section id="post" class="chapter postcard-chapter" aria-labelledby="post-title">
+  <section id="post" class="chapter tone-sand" aria-labelledby="post-title">
+    <div class="wrap post-grid">
+      <article class="postcard card">
+        <div class="postcard-stamp" aria-hidden="true">
+          <span data-sprite="clawd"></span>
+          <span class="postcard-stamp-value">17.10.</span>
+        </div>
+        <div class="postcard-mark" aria-hidden="true">Claude-Town<br>17.10.2026</div>
+        <h2 id="post-title" class="postcard-title">Post von Laurin</h2>
+        <div class="postcard-text">
+          <p>Liebe Saskia,</p>
+          <p>alles Liebe zum Geburtstag! Der kleine Anhänger an deinem Schlüssel hat einen Chip drin: Handy dranhalten, und Clawd und ich sind sofort da, wenn Claude mal wieder nicht kapiert, was du willst. Bevor du ihn das nächste Mal anschreist, drück lieber unseren Notfallknopf, der steckt das deutlich besser weg. Und weil ich dich mag, sag ich's hier noch mal ganz sanft: Shops baust du ab jetzt mit Shopify, nicht selbst. Lass dich heute ordentlich feiern!</p>
+          <p class="postcard-sign">Dein Laurin</p>
+        </div>
+      </article>
+      <span class="post-laurin" data-sprite="laurinSalute" data-title="Pixel-Laurin salutiert"></span>
+    </div>
+  </section>
+
+  <nav id="stadtplan" class="chapter tone-peach" aria-labelledby="map-title">
+    <span class="walker" aria-hidden="true"><span data-sprite="clawd"></span></span>
     <div class="wrap">
-      <h2 id="post-title" class="visually-hidden">Post von Laurin</h2>
+      <header class="chapter-head">
+        <span class="chapter-sign">Stadtplan</span>
+        <h2 id="map-title">Wo willst du hin?</h2>
+        <p class="chapter-lead">Elf Orte, alle zu Fuß erreichbar. Tipp einfach drauf.</p>
+      </header>
+      <ol class="map">
+        <li><a class="map-sign sign-mustard" href="#tools"><span class="map-no">01</span><strong>Werkzeug-Garage</strong><span>Welches Tool wofür</span></a></li>
+        <li><a class="map-sign sign-pink" href="#sos"><span class="map-no">02</span><strong>Notaufnahme</strong><span>Der Anschrei-Notfallknopf</span></a></li>
+        <li><a class="map-sign sign-mint" href="#regeln"><span class="map-no">03</span><strong>Regel-Boulevard</strong><span>Sieben goldene Regeln</span></a></li>
+        <li><a class="map-sign sign-cream" href="#baukasten"><span class="map-no">04</span><strong>Brief-Werkstatt</strong><span>Prompt-Baukasten</span></a></li>
+        <li><a class="map-sign sign-lilac" href="#workflow"><span class="map-no">05</span><strong>Baustellen-Route</strong><span>Von der Idee bis live</span></a></li>
+        <li><a class="map-sign sign-mint" href="#shopify"><span class="map-no">06</span><strong>Shopify-Mall</strong><span>Shops? Shopify.</span></a></li>
+        <li><a class="map-sign sign-mustard" href="#skills"><span class="map-no">07</span><strong>Bibliothek</strong><span>Laurins Skills</span></a></li>
+        <li><a class="map-sign sign-pink" href="#superkraefte"><span class="map-no">08</span><strong>Superkräfte-Labor</strong><span>Was Claude neu kann</span></a></li>
+        <li><a class="map-sign sign-cream" href="#doktor"><span class="map-no">09</span><strong>Praxis Dr. Fehler</strong><span>Symptom rein, Fix raus</span></a></li>
+        <li><a class="map-sign sign-lilac" href="#buddy"><span class="map-no">10</span><strong>Buddy-Hangar</strong><span>Pixel-Laurin auf deinem Screen</span></a></li>
+        <li><a class="map-sign sign-mustard" href="#starterkit"><span class="map-no">11</span><strong>Kiosk</strong><span>Alles zum Runterladen</span></a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <section id="tools" class="chapter tone-lilac" aria-labelledby="tools-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">01 · Werkzeug-Garage</span>
+        <h2 id="tools-title">Denken in der App, bauen in Antigravity.</h2>
+        <p class="chapter-lead">Zwei Werkzeuge, zwei Jobs. Wer im Chat Code baut oder in der IDE Texte grübelt, macht sich das Leben schwer.</p>
+      </header>
+      <div class="tools-grid">
+        <article class="card tool-card tool-app">
+          <p class="tool-tag">Claude-Desktop-App</p>
+          <h3>Zum Denken</h3>
+          <ul class="ticks">
+            <li>Briefs, Texte, Pläne: im Chat oder in einem Projekt mit Anweisungen und Wissensdateien.</li>
+            <li>Recherche mit <code>/deep-research</code> oder „+“ › Research. Bezahlte Pläne, frisst Limit.</li>
+            <li>Design-Entwürfe mit Claude Design, direkt im Chat oder im Artifacts-Tab. Export als HTML oder ZIP.</li>
+            <li>Skills unter Customize › Skills, Connectors wie Shopify unter Customize › Connectors.</li>
+            <li>Code-Tab: Claude Code ohne Terminal, mit Browser-Vorschau deiner Seite.</li>
+            <li>Hier wohnt auch Pixel-Laurin als Zeige-Buddy.</li>
+          </ul>
+        </article>
+        <article class="card tool-card tool-ag">
+          <p class="tool-tag">Antigravity mit Claude</p>
+          <h3>Zum Bauen</h3>
+          <ul class="ticks">
+            <li>Code, Dateien, ganze Projektordner.</li>
+            <li>Claude Opus 5.5 und Sonnet 5.5 (Thinking) im Dropdown unter dem Eingabefeld. Braucht Google AI Pro, Ultra oder Enterprise.</li>
+            <li>Regeln in <code>.agents/rules/</code>, mit <code>trigger</code>-Zeile oben, sonst werden sie ignoriert.</li>
+            <li>Skills mit <code>npx skills add &lt;repo&gt; -a antigravity -g -y</code>, auf Windows plus <code>--copy</code>.</li>
+            <li>Plan B: die offizielle Erweiterung „Claude Code“ aus dem Extensions-Panel, läuft über dein Claude-Abo.</li>
+            <li>Keine Workflows mehr bauen: Die hören am 19.10.2026 auf.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="models">
+        <h3 class="models-title">Welches Modell wann?</h3>
+        <ul class="model-list">
+          <li class="model model-sonnet"><strong>Sonnet 5.5</strong><span>Alltag, Bauen, Routine. Schont das Limit.</span></li>
+          <li class="model model-opus"><strong>Opus 5.5</strong><span>Knifflige Bugs, große Pläne, Research.</span></li>
+          <li class="model model-haiku"><strong>Haiku 5.5</strong><span>Kleinkram: Texte umformulieren, kurze Fragen.</span></li>
+          <li class="model model-fable"><strong>Fable 5.1</strong><span>Auf Max dabei, auf Pro nur über Usage-Credits. Frisst viel.</span></li>
+        </ul>
+        <p class="models-note"><strong>Effort</strong> (Low bis Max) findest du im Menü neben dem Senden-Knopf: Low für Kleinkram, High für harte Nüsse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sos" class="chapter tone-night sos" aria-labelledby="sos-title">
+    <div class="wrap sos-grid">
+      <header class="chapter-head">
+        <span class="chapter-sign sign-pinkbg">02 · Notaufnahme</span>
+        <h2 id="sos-title">Erst drücken, dann tippen.</h2>
+        <p class="chapter-lead">Großbuchstaben und Schimpfwörter enthalten keine Information. Claude braucht den Unterschied zwischen dem, was er gemacht hat, und dem, was du wolltest.</p>
+      </header>
+      <div class="sos-stage">
+        <div class="sos-clawd" aria-hidden="true">
+          <span class="sos-clawd-sprite" data-sprite="clawd"></span>
+        </div>
+        <button class="sos-button" type="button">
+          <span class="sos-button-cap"><span>Ich will Claude gerade anschreien</span></span>
+        </button>
+        <div class="sos-result" aria-live="polite" hidden>
+          <p class="bubble sos-tip"><strong class="sos-tip-title"></strong> <span class="sos-tip-text"></span></p>
+          <p class="sos-next">Und jetzt das hier in einen neuen Chat:</p>
+          <div class="copybox">
+            <pre id="reset-prompt"></pre>
+            <button class="btn btn--mint" type="button" data-copy-target="reset-prompt">Reset-Prompt kopieren</button>
+          </div>
+          <button class="sos-again" type="button">Noch ein Tipp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="regeln" class="chapter tone-mint" aria-labelledby="rules-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">03 · Regel-Boulevard</span>
+        <h2 id="rules-title">Sieben Gewohnheiten, die mehr bringen als jeder Wutanfall.</h2>
+      </header>
+      <ol class="rules">
+        <li class="rule card rule-big"><span class="rule-no">1</span><h3>Erst planen</h3><p>Lass Claude zuerst einen Plan zeigen und gib dein Okay, bevor Code entsteht.</p><p class="rule-quote">Fünf Minuten Plan sparen zwei Stunden Rückbau.</p><span class="rule-clawd" data-sprite="clawd" aria-hidden="true"></span></li>
+        <li class="rule card"><span class="rule-no">2</span><h3>Eins nach dem anderen</h3><p>Eine Section, ein Bug, ein Wunsch pro Nachricht.</p><p class="rule-quote">Drei Wünsche auf einmal? Ich bin Pixel-Laurin, kein Flaschengeist.</p></li>
+        <li class="rule card"><span class="rule-no">3</span><h3>Zeigen statt beschreiben</h3><p>Screenshots und Referenz-Links sagen mehr als jedes Adjektiv.</p><p class="rule-quote">„Moderner“ heißt für jeden was anderes. Ein Link nicht.</p></li>
+        <li class="rule card"><span class="rule-no">4</span><h3>Neuer Chat pro Thema</h3><p>Lange Chats machen Claude vergesslich und fressen dein Limit.</p><p class="rule-quote">Zusammenfassen lassen, neu starten, weiter geht's.</p></li>
+        <li class="rule card"><span class="rule-no">5</span><h3>Anweisungen pflegen</h3><p>Was immer gilt, gehört in die Projekt-Anweisungen oder die Antigravity-Regeln.</p><p class="rule-quote">Einmal aufschreiben, nie wieder erklären.</p></li>
+        <li class="rule card"><span class="rule-no">6</span><h3>Ursache vor Rumprobieren</h3><p>Nach zwei Fehlversuchen erst die Ursache suchen lassen, dann fixen.</p><p class="rule-quote">Raten ist teuer. Nachdenken ist billig.</p></li>
+        <li class="rule card rule-wide"><span class="rule-no">7</span><h3>Prüfen lassen</h3><p>Fertig ist es erst, wenn es im Browser und am Handy geprüft ist.</p><p class="rule-quote">„Fertig“ heißt angeschaut, nicht nur behauptet.</p><span class="rule-laurin" data-sprite="laurinThumbs" data-title="Pixel-Laurin zeigt Daumen hoch"></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="baukasten" class="chapter tone-sand" aria-labelledby="brief-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">04 · Brief-Werkstatt</span>
+        <h2 id="brief-title">Formular ausfüllen, fertigen Brief kopieren.</h2>
+        <p class="chapter-lead">Ein guter Brief ist die halbe Website. Alles bleibt in deinem Browser, nichts wird gespeichert oder verschickt.</p>
+      </header>
+      <div class="brief">
+        <form class="brief-form card" autocomplete="off">
+          <fieldset class="field">
+            <legend>Was baust du?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="art" value="Website" checked><span>Website</span></label>
+              <label class="chip"><input type="radio" name="art" value="Onlineshop (Shopify)"><span>Shop (Shopify)</span></label>
+              <label class="chip"><input type="radio" name="art" value="Landingpage"><span>Landingpage</span></label>
+            </div>
+          </fieldset>
+          <label class="field"><span>Name oder Marke</span><input name="name" type="text" placeholder="z.B. Atelier Morgenrot"></label>
+          <label class="field"><span>Ziel</span><input name="ziel" type="text" placeholder="z.B. Anfragen für Hochzeitsfotos bekommen"></label>
+          <label class="field"><span>Zielgruppe</span><input name="zielgruppe" type="text" placeholder="z.B. Paare zwischen 25 und 40 in NRW"></label>
+          <fieldset class="field">
+            <legend>Vibe</legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="vibe" value="verspielt"><span>verspielt</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="elegant"><span>elegant</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="mutig"><span>mutig</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="ruhig"><span>ruhig</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="luxuriös"><span>luxuriös</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="natürlich"><span>natürlich</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="retro"><span>retro</span></label>
+              <label class="chip"><input type="checkbox" name="vibe" value="minimal"><span>minimal</span></label>
+            </div>
+          </fieldset>
+          <label class="field"><span>Referenzen (Links und was genau dir gefällt)</span><textarea name="referenzen" rows="3" placeholder="https://… gefällt mir wegen der großen Fotos"></textarea></label>
+          <label class="field"><span>Seiten</span><input name="seiten" type="text" placeholder="Start, Über mich, Leistungen, Kontakt"></label>
+          <label class="field"><span>Must-haves</span><input name="must" type="text" placeholder="z.B. Buchungsformular, Instagram-Feed"></label>
+          <label class="field"><span>No-Gos</span><input name="nogos" type="text" placeholder="z.B. kein Lila, keine Stockfotos"></label>
+        </form>
+        <div class="brief-out">
+          <div class="copybox brief-box">
+            <pre id="brief-output"></pre>
+            <button class="btn btn--mint" type="button" data-copy-target="brief-output">Brief kopieren</button>
+          </div>
+          <p class="bubble brief-tip">Tipp: Brief in einen neuen Chat, erst den Plan abnicken, dann bauen lassen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" class="chapter tone-peach" aria-labelledby="flow-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">05 · Baustellen-Route</span>
+        <h2 id="flow-title">Acht Stationen. Immer in dieser Reihenfolge.</h2>
+      </header>
+      <ol class="route">
+        <li class="stop"><span class="stop-no">1</span><div><h3>Brief</h3><p>Ziel, Zielgruppe, Vibe, Seiten und No-Gos einmal sauber aufschreiben.</p></div></li>
+        <li class="stop"><span class="stop-no">2</span><div><h3>Referenzen</h3><p>Drei bis fünf echte Seiten, die du magst, und was genau daran.</p></div></li>
+        <li class="stop"><span class="stop-no">3</span><div><h3>Design festlegen</h3><p>Farben, Schriften und Abstände in eine DESIGN.md, bevor gebaut wird.</p></div></li>
+        <li class="stop"><span class="stop-no">4</span><div><h3>Bauen</h3><p>Section für Section, mobil zuerst, nach jedem Schritt anschauen.</p></div></li>
+        <li class="stop"><span class="stop-no">5</span><div><h3>Polieren</h3><p>critique, polish, typeset, animate, adapt, optimize. Eins pro Runde.</p></div></li>
+        <li class="stop"><span class="stop-no">6</span><div><h3>Testen</h3><p>Handy, Tablet, Desktop, hell und dunkel, im echten Browser.</p></div></li>
+        <li class="stop"><span class="stop-no">7</span><div><h3>Rechtliches</h3><p>Impressum und Datenschutz, beim Shop dazu AGB, Widerruf und Versand.</p></div></li>
+        <li class="stop stop-goal"><span class="stop-no">8</span><div><h3>Live</h3><p>In einem Rutsch live schalten und auf der echten Adresse am Handy prüfen.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="shopify" class="chapter tone-mint" aria-labelledby="shop-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">06 · Shopify-Mall</span>
+        <h2 id="shop-title">Shops? Shopify.</h2>
+        <p class="chapter-lead">Laurin sagt: Selbstgebaute Shops über Claude sind Quatsch. Claude kann dir einen Warenkorb bauen. Aber Checkout, Zahlungen, Steuern und Sicherheit sind kein Wochenendprojekt.</p>
+      </header>
+      <div class="versus card">
+        <div class="versus-head" aria-hidden="true">
+          <span class="versus-diy">Selbstgebaut mit Claude</span>
+          <span class="versus-vs">vs</span>
+          <span class="versus-shop">Shopify</span>
+        </div>
+        <ul class="versus-rows">
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Claude baut dir einen Checkout. Ob der sicher ist, merkst du beim ersten Kunden.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Den Checkout pflegt Shopify, sicher nach PCI-DSS Level 1.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Server, Zertifikat, Backups: alles deine Baustelle.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Hosting und SSL sind inklusive.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Zahlungsanbieter anbinden heißt: ein Wochenende API-Doku.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Shopify Payments: 2,1 % + 0,30 € pro Zahlung (Basic), Klarna 2,99 % + 0,35 €.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Steuersätze pflegst du von Hand und hoffst.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Die MwSt. rechnet Shopify automatisch. Abführen bleibt deine Sache.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Widerruf, AGB, Versand: abtippen und Daumen drücken.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Die Seiten werden generiert. Deutsche Texte am besten aus einer Kanzlei-App, das Impressum machst du selbst.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Claude rät, wie dein eigener Code gemeint war.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Shopify AI Toolkit und Dev MCP geben Claude die echte Shopify-Doku.</p></li>
+          <li><p class="diy"><span class="visually-hidden">Selbstgebaut: </span>Kostet „nichts“. Außer deine Abende.</p><p class="shop"><span class="visually-hidden">Shopify: </span>Basic: 36 € im Monat, 27 € bei jährlicher Zahlung. Testen: 3 Tage, dann 1 € im Monat für 3 Monate.</p></li>
+        </ul>
+        <p class="fine">Preise Deutschland, Stand Oktober 2026. Fremde Zahlungsanbieter kosten auf Basic 2 % extra. OSS wird ab 10.000 € EU-Fernverkauf Thema.</p>
+      </div>
+
+      <div class="shop-flow">
+        <div class="shop-steps">
+          <h3>Sicher mit Claude am Theme arbeiten</h3>
+          <ol class="steps">
+            <li><strong>Dev-Store nutzen.</strong> Nie am echten Shop üben.</li>
+            <li><strong>Theme holen:</strong> <code>shopify theme pull</code></li>
+            <li><strong>Lokal entwickeln:</strong> <code>shopify theme dev --store &lt;shop&gt;</code> startet ein verstecktes Entwicklungs-Theme mit Live-Reload.</li>
+            <li><strong>Prüfen und Vorschau:</strong> Theme Check, dann <code>shopify theme push --unpublished</code>.</li>
+            <li><strong>Live schaltest du selbst im Admin.</strong> Nie <code>--live</code>, <code>--publish</code> oder <code>--allow-live</code>.</li>
+          </ol>
+        </div>
+        <div class="shop-prompts">
+          <h3>Zum Kopieren</h3>
+          <div class="copybox">
+            <pre id="shop-rules">Wir arbeiten an meinem Shopify-Theme. Regeln für diese Sitzung:
+- Nur Dev-Store oder unveröffentlichtes Theme.
+- Erlaubt: shopify theme pull, shopify theme dev, shopify theme check,
+  shopify theme push --unpublished.
+- Verboten: --live, --publish, --allow-live. Live schalte ich selbst im Admin.
+- Bevor du einen Befehl ausführst: zeig ihn mir und sag in einem Satz, was er tut.
+Erste Aufgabe: [...]</pre>
+            <button class="btn btn--mint" type="button" data-copy-target="shop-rules">Sicherheitsregeln kopieren</button>
+          </div>
+          <div class="copybox">
+            <pre id="shop-section">Bau mir eine neue Section für mein Theme: [was sie zeigen soll].
+Halte dich an die Theme-Standards (Liquid, Barrierefreiheit) und prüf
+den Liquid-Code mit dem Shopify AI Toolkit.
+Texte, Bild und Farben sollen im Theme-Editor einstellbar sein.
+Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
+            <button class="btn btn--mint" type="button" data-copy-target="shop-section">Section-Prompt kopieren</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="chapter tone-sand" aria-labelledby="skills-title">
+    <span class="walker walker-slow" aria-hidden="true"><span data-sprite="clawd"></span></span>
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">07 · Bibliothek</span>
+        <h2 id="skills-title">Die Skills, die Laurin selbst benutzt.</h2>
+        <p class="chapter-lead">Nur Repos mit über 1.000 GitHub-Sternen oder offizielle von Anthropic und Shopify. Vor dem Installieren kurz reinschauen, was drin ist.</p>
+      </header>
+      <div class="install-hints">
+        <p class="card install-hint"><strong>In der Desktop-App:</strong> Repo als ZIP laden, Skill-Ordner einzeln zippen (Ordner an die Wurzel, Beschreibung max. 200 Zeichen), dann Customize › Skills › „+“ › „Upload a skill“.</p>
+        <p class="card install-hint"><strong>In Antigravity:</strong> <code>npx skills add &lt;repo&gt; -a antigravity -g -y --copy</code></p>
+      </div>
+      <div class="filters" role="group" aria-label="Skills filtern"></div>
+      <ul class="skill-grid" aria-live="polite"></ul>
+    </div>
+  </section>
+
+  <section id="superkraefte" class="chapter tone-lilac" aria-labelledby="powers-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">08 · Superkräfte-Labor</span>
+        <h2 id="powers-title">Was Claude seit Kurzem kann, und wo du es findest.</h2>
+        <p class="chapter-lead">Stand Oktober 2026, Desktop-App auf Windows. Menünamen in Anführungszeichen sind englisch, so wie in der App.</p>
+      </header>
+      <ul class="powers">
+        <li class="power card"><h3>Projekte</h3><p class="where">„+ New Project“ › „Set project instructions“</p><p>Ein Projekt pro Website: Claude kennt Marke, Farben und Regeln, ohne dass du sie wiederholst. Jedes Projekt hat sein eigenes Memory.</p></li>
+        <li class="power card"><h3>Memory</h3><p class="where">Settings › Memory › Topics</p><p>Sieh nach, was Claude sich über dich gemerkt hat, und korrigier es.</p></li>
+        <li class="power card"><h3>Eigene Skills</h3><p class="where">Customize › Skills › „+“ › „Upload a skill“</p><p>Laurin-Helfer und Design-Skills direkt in der App, auf allen Plänen.</p></li>
+        <li class="power card"><h3>Claude Design</h3><p class="where">In jedem Chat und im Artifacts-Tab</p><p>Design-Entwürfe ausprobieren, als HTML oder ZIP exportieren und an Claude Code übergeben.</p></li>
+        <li class="power card"><h3>Research</h3><p class="where">„+“ › Research oder /deep-research</p><p>Konkurrenz und Markt gründlich recherchieren lassen. Bezahlte Pläne, frisst Limit.</p></li>
+        <li class="power card"><h3>Shopify-Connector</h3><p class="where">Customize › Connectors</p><p>Produkte, Lager und Rabatte per Chat. Nur mit dem Dev-Store testen.</p></li>
+        <li class="power card"><h3>Code-Tab</h3><p class="where">Desktop-App, bezahlter Plan</p><p>Claude Code ohne Terminal, mit Browser-Vorschau der laufenden Seite und Plan-Modus.</p></li>
+        <li class="power card"><h3>Modell und Effort</h3><p class="where">Menü neben dem Senden-Knopf</p><p>Sonnet und Low für Routine, Opus und High für harte Nüsse. Spart Limit.</p></li>
+        <li class="power card"><h3>Erweiterungen</h3><p class="where">Settings › Extensions</p><p>Hier läuft Pixel-Laurin. Eigene .mcpb-Dateien per Doppelklick installieren.</p></li>
+        <li class="power card"><h3>Verbrauch</h3><p class="where">Settings › Usage</p><p>Zeigt, wann dein Limit zurückgesetzt wird.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="doktor" class="chapter tone-pink" aria-labelledby="doc-title">
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">09 · Praxis Dr. Fehler</span>
+        <h2 id="doc-title">Symptom anklicken, Ursache lesen, Prompt kopieren.</h2>
+      </header>
+      <div class="doctor"></div>
+    </div>
+  </section>
+
+  <section id="buddy" class="chapter tone-peach" aria-labelledby="buddy-title">
+    <div class="wrap buddy-grid">
+      <header class="chapter-head">
+        <span class="chapter-sign">10 · Buddy-Hangar</span>
+        <h2 id="buddy-title">Pixel-Laurin auf deinem Bildschirm.</h2>
+        <p class="chapter-lead">Er schwebt über deinen Bildschirm und zeigt mit einem Pfeil, wo du klicken musst. Claude schaut sich deinen Bildschirm an, zeigt dir einen Schritt, du klickst und sagst „weiter“. Dann kommt der nächste.</p>
+      </header>
+      <figure class="buddy-demo" aria-label="Beispiel: Pixel-Laurin zeigt im Shopify-Admin auf den Knopf Produkt hinzufügen">
+        <div class="demo-window">
+          <div class="demo-bar"><span></span><span></span><span></span><em>admin.shopify.com</em></div>
+          <div class="demo-body">
+            <div class="demo-side"><i></i><i></i><i class="on"></i><i></i><i></i></div>
+            <div class="demo-main">
+              <div class="demo-head"><b>Produkte</b><span class="demo-btn">Produkt hinzufügen</span></div>
+              <i class="demo-row"></i><i class="demo-row"></i><i class="demo-row"></i>
+            </div>
+          </div>
+          <div class="demo-buddy" aria-hidden="true">
+            <svg class="demo-arrow" viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L21 17 Z"/></svg>
+            <span class="demo-laurin" data-sprite="laurinPoint"></span>
+            <p class="bubble demo-bubble">Hier klicken, Saskia!</p>
+          </div>
+        </div>
+      </figure>
+      <div class="buddy-install">
+        <h3>Installieren (Windows, Claude-Desktop-App)</h3>
+        <ol class="steps">
+          <li><a href="downloads/laurin-buddy.mcpb" download><code>laurin-buddy.mcpb</code></a> herunterladen.</li>
+          <li>Doppelklick auf die Datei, Claude Desktop installiert sie. Alternativ: Settings › Extensions › Advanced settings › Extension Developer › „Install Extension…“.</li>
+          <li>Wenn Claude fragt, die Werkzeuge erlauben.</li>
+          <li>Ausprobieren: „Zeig mir, wo ich in Shopify ein Produkt anlege.“</li>
+        </ol>
+        <p class="bubble buddy-note">Er klickt nie selbst. Er zeigt nur. Einen Screenshot gibt es nur, wenn du ihn darum bittest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="starterkit" class="chapter tone-sand" aria-labelledby="kit-title">
+    <span class="walker" aria-hidden="true"><span data-sprite="clawd"></span></span>
+    <div class="wrap">
+      <header class="chapter-head">
+        <span class="chapter-sign">11 · Kiosk</span>
+        <h2 id="kit-title">Alles zum Runterladen.</h2>
+      </header>
+      <ul class="kit">
+        <li class="kit-item card kit-hero">
+          <span class="kit-sprite" data-sprite="laurinWave"></span>
+          <h3>Laurin-Helfer</h3>
+          <p>Pixel-Laurin als Skill in deinem Claude.</p>
+          <p class="kit-how"><strong>Desktop-App:</strong> Settings › Capabilities › „Code execution and file creation“ an, dann Customize › Skills › „+“ › „+ Create skill“ › „Upload a skill“. <strong>Antigravity:</strong> entpacken, Ordner nach <code>C:\Users\&lt;Name&gt;\.gemini\config\skills\</code> kopieren.</p>
+          <a class="btn btn--pink" href="downloads/laurin-helfer.zip" download>ZIP laden</a>
+        </li>
+        <li class="kit-item card">
+          <h3>Laurin-Buddy</h3>
+          <p>Zeigt dir auf dem Bildschirm, wo du klicken musst.</p>
+          <p class="kit-how">Doppelklick, Claude Desktop installiert ihn.</p>
+          <a class="btn" href="downloads/laurin-buddy.mcpb" download>.mcpb laden</a>
+        </li>
+        <li class="kit-item card">
+          <h3>Projekt-Anweisungen</h3>
+          <p>Laurins Regeln für ein Projekt „Websites &amp; Shops“.</p>
+          <p class="kit-how">„+ New Project“ › „Set project instructions“, Text reinkopieren.</p>
+          <a class="btn btn--mint" href="downloads/projekt-anweisungen.md" download>Text laden</a>
+        </li>
+        <li class="kit-item card">
+          <h3>Antigravity-Regeln</h3>
+          <p>Dieselben Regeln, zum Bauen.</p>
+          <p class="kit-how">Als <code>.agents/rules/laurin.md</code> ins Projekt oder global nach <code>C:\Users\&lt;Name&gt;\.gemini\config\rules\laurin.md</code>.</p>
+          <a class="btn btn--mint" href="downloads/antigravity-rules.md" download>Regeln laden</a>
+        </li>
+        <li class="kit-item card">
+          <h3>Brief-Vorlage</h3>
+          <p>Zum Ausfüllen vor jedem neuen Projekt.</p>
+          <p class="kit-how">Ausfüllen und in einen neuen Chat kopieren.</p>
+          <a class="btn btn--ghost" href="downloads/website-brief-vorlage.md" download>Vorlage laden</a>
+        </li>
+        <li class="kit-item card">
+          <h3>Alles als PDF</h3>
+          <p>Die ganze Seite zum Ausdrucken.</p>
+          <p class="kit-how">Öffnen, lesen, an die Wand hängen.</p>
+          <a class="btn btn--ghost" href="downloads/saskias-claude-welt.pdf" download>PDF laden</a>
+        </li>
+      </ul>
     </div>
   </section>
 </main>
+
+<footer class="footer tone-night">
+  <div class="wrap footer-inner">
+    <div class="footer-crew" aria-hidden="true">
+      <span data-sprite="laurinSalute"></span>
+      <span data-sprite="clawd"></span>
+    </div>
+    <p class="footer-big">Bis später in Claude-Town.</p>
+    <p>Ein Fan-Geschenk von Laurin. Nicht von Anthropic.</p>
+    <p class="footer-small">Gebaut am 17.10.2026, natürlich mit Claude. <a href="#hallo">Nach oben</a></p>
+  </div>
+</footer>
 </body>
 </html>

@@ -153,6 +153,21 @@ const ARM_WAVE = part(11, [
   '.8 t3',
 ]);
 
+// Second wave frame: hand tipped outwards, fingers spread.
+const ARM_WAVE_B = part(11, [
+  '.1 s1 .1 s1 .7',
+  '.1 s3 .7',
+  '.1 s3 .7',
+  '.2 s2 .7',
+  '.3 s2 .6',
+  '.3 s2 .6',
+  '.4 s2 .5',
+  '.5 s2 .4',
+  '.6 s2 .3',
+  '.7 t3 .1',
+  '.8 t3',
+]);
+
 // Arm stretched up-left with the index finger out (buddy pointing pose).
 const ARM_POINT = part(11, [
   's1 .10',
@@ -209,6 +224,7 @@ const ARM_R_DOWN = [ARM_RIGHT_DOWN, HEAD_X + 16, TORSO_Y + 1];
 const POINT_ANCHOR = { x: 1, y: 12 };
 
 const laurinWave = laurin({ behind: [[ARM_WAVE, 2, 11], ARM_R_DOWN] });
+const laurinWaveB = laurin({ behind: [[ARM_WAVE_B, 2, 11], ARM_R_DOWN] });
 const laurinPoint = laurin({ behind: [[ARM_POINT, POINT_ANCHOR.x, POINT_ANCHOR.y], ARM_R_DOWN] });
 const laurinSalute = laurin({ behind: [ARM_L_DOWN], over: [[ARM_SALUTE, 19, 7]] });
 const laurinThumbs = laurin({ behind: [ARM_L_DOWN], over: [[ARM_THUMBS, 17, 23]] });
@@ -242,6 +258,7 @@ function clawd() {
 const SPRITES = {
   clawd: { rows: clawd(), classes: { e: 'px-eyes' } },
   laurinWave: { rows: laurinWave, classes: { e: 'px-eyes' } },
+  laurinWaveB: { rows: laurinWaveB, classes: { e: 'px-eyes' } },
   laurinPoint: { rows: laurinPoint, classes: { e: 'px-eyes' }, anchor: POINT_ANCHOR },
   laurinSalute: { rows: laurinSalute, classes: { e: 'px-eyes' } },
   laurinThumbs: { rows: laurinThumbs, classes: { e: 'px-eyes' } },

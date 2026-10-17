@@ -1,0 +1,270 @@
+/* Motion layer: everything that makes Claude-Town feel alive. Only transform/opacity.
+   prefers-reduced-motion keeps the scene still but readable. */
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Pixel-Laurin waves in bursts ---------- */
+.crew-laurin {
+  display: grid;
+  animation: idle-bob 1.2s steps(2, jump-none) infinite;
+}
+
+.crew-laurin > * {
+  grid-area: 1 / 1;
+}
+
+.wave-a {
+  animation: frame-a 4.8s steps(1, end) infinite;
+}
+
+.wave-b {
+  opacity: 0;
+  animation: frame-b 4.8s steps(1, end) infinite;
+}
+
+@keyframes frame-a {
+  0%, 10%, 20%, 30%, 100% { opacity: 1; }
+  5%, 15%, 25% { opacity: 0; }
+}
+
+@keyframes frame-b {
+  0%, 10%, 20%, 30%, 100% { opacity: 0; }
+  5%, 15%, 25% { opacity: 1; }
+}
+
+.crew-clawd {
+  animation: idle-bob 0.9s 0.3s steps(2, jump-none) infinite;
+}
+
+@keyframes idle-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+.crew-clawd.hop {
+  animation: hop 0.5s var(--ease-out-expo);
+}
+
+/* ---------- traffic and birds ---------- */
+.car-drive {
+  animation: drive 16s linear infinite;
+}
+
+@keyframes drive {
+  from { transform: translateX(-1300px); }
+  to { transform: translateX(560px); }
+}
+
+.birds {
+  position: absolute;
+  z-index: 5;
+  inset: 0 0 auto;
+  height: 50%;
+  pointer-events: none;
+}
+
+.birds i {
+  position: absolute;
+  left: -40px;
+  width: 18px;
+  height: 8px;
+  animation: fly-across 22s linear infinite;
+}
+
+.birds i::before,
+.birds i::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  width: 10px;
+  height: 3px;
+  background: var(--line);
+  border-radius: 2px;
+  animation: flap 0.5s steps(2, jump-none) infinite;
+}
+
+.birds i::before {
+  left: 0;
+  transform-origin: right center;
+  rotate: 24deg;
+}
+
+.birds i::after {
+  right: 0;
+  transform-origin: left center;
+  rotate: -24deg;
+}
+
+.birds i:nth-child(1) { top: 38%; animation-delay: -4s; }
+.birds i:nth-child(2) { top: 44%; animation-delay: -5.2s; scale: 0.8; }
+.birds i:nth-child(3) { top: 30%; animation-delay: -13s; scale: 0.7; }
+
+@keyframes fly-across {
+  from { transform: translate(0, 0); }
+  50% { transform: translate(55vw, -30px); }
+  to { transform: translate(115vw, 10px); }
+}
+
+@keyframes flap {
+  from { transform: rotate(0); }
+  to { transform: rotate(-28deg); }
+}
+
+/* ---------- night details ---------- */
+[data-theme='night'] .stars {
+  animation: twinkle 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  to { opacity: 0.55; }
+}
+
+[data-theme='night'] .city-windows {
+  animation: flicker 7s steps(1, end) infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.9; }
+  40% { opacity: 0.75; }
+  41% { opacity: 0.9; }
+  77% { opacity: 0.8; }
+}
+
+/* ---------- parallax (driven by --scroll from life.js) ---------- */
+.hero {
+  --scroll: 0;
+}
+
+.sun { translate: 0 calc(var(--scroll) * 0.35px); }
+.skyline { translate: 0 calc(var(--scroll) * 0.22px); }
+.midhills { translate: 0 calc(var(--scroll) * 0.12px); }
+.clouds { translate: 0 calc(var(--scroll) * 0.45px); }
+.flight { translate: 0 calc(var(--scroll) * -0.15px); }
+
+/* ---------- Clawd walks along some section edges ---------- */
+.walker {
+  position: absolute;
+  z-index: 2;
+  top: -44px;
+  left: 0;
+  width: 54px;
+  animation: walk 38s linear infinite;
+}
+
+.walker > span {
+  display: block;
+  animation: idle-bob 0.4s steps(2, jump-none) infinite;
+}
+
+.walker-slow {
+  animation-duration: 56s;
+  animation-delay: -20s;
+}
+
+@keyframes walk {
+  0% { transform: translateX(-80px) scaleX(1); }
+  49.9% { transform: translateX(calc(100vw + 10px)) scaleX(1); }
+  50% { transform: translateX(calc(100vw + 10px)) scaleX(-1); }
+  100% { transform: translateX(-80px) scaleX(-1); }
+}
+
+/* ---------- small delights ---------- */
+.sos-button {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% { box-shadow: 0 10px 0 #0d0610, 0 0 80px rgba(236, 111, 142, 0.75); }
+}
+
+.scroll-cue {
+  animation: cue 1.6s var(--ease-soft) infinite alternate;
+}
+
+@keyframes cue {
+  to { transform: translate(-50%, -6px); }
+}
+
+.map-sign:hover {
+  animation: wiggle 0.4s var(--ease-soft);
+}
+
+@keyframes wiggle {
+  30% { rotate: -2.5deg; }
+  65% { rotate: 2deg; }
+}
+
+.rule-clawd {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: clamp(64px, 30%, 120px);
+  animation: idle-bob 0.9s steps(2, jump-none) infinite;
+}
+
+/* ---------- confetti from the plane ---------- */
+.confetti {
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 14px;
+  border: 2px solid var(--line);
+  pointer-events: none;
+  animation: confetti-fall var(--dur-fall, 2.6s) cubic-bezier(0.25, 0.6, 0.4, 1) forwards;
+}
+
+@keyframes confetti-fall {
+  from {
+    transform: translate(var(--x0), var(--y0)) rotate(0);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--x1), var(--y1)) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crew-laurin,
+  .crew-clawd,
+  .wave-a,
+  .wave-b,
+  .car-drive,
+  .birds i,
+  .birds i::before,
+  .birds i::after,
+  .walker,
+  .walker > span,
+  .sos-button,
+  .scroll-cue,
+  .rule-clawd,
+  [data-theme='night'] .stars,
+  [data-theme='night'] .city-windows {
+    animation: none;
+  }
+
+  .birds,
+  .walker {
+    display: none;
+  }
+
+  .sun,
+  .skyline,
+  .midhills,
+  .clouds,
+  .flight {
+    translate: none;
+  }
+}
+
+.plane {
+  pointer-events: auto;
+  cursor: pointer;
+}

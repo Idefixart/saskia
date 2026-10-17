@@ -94,18 +94,17 @@ textarea {
 
 .skip {
   position: fixed;
-  top: 0.75rem;
   left: 0.75rem;
   z-index: 100;
   padding: 0.6rem 1rem;
   background: var(--surface);
   border: var(--stroke) solid var(--line);
   border-radius: var(--radius-s);
-  transform: translateY(-200%);
+  top: -5rem;
 }
 
 .skip:focus {
-  transform: none;
+  top: 0.75rem;
 }
 
 /* Film grain over everything, like a printed cartoon cel. */

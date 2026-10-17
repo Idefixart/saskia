@@ -93,6 +93,47 @@ export const SPRITES = {
       "e": "px-eyes"
     }
   },
+  "laurinWaveB": {
+    "rows": [
+      "...............kkkkkk.............",
+      "............kkkkhhhhkkkk..........",
+      "..........kkkhhhhllhhhhkkk........",
+      ".........kkhhhhhhhllhhhhhkk.......",
+      "........kkhhhhhhhhhllhhhhhkk......",
+      ".......kkhhhhhhhhhhhllhhhhhkk.....",
+      ".......kHhhhhhhhhhhhhlhhhhhHk.....",
+      ".......kHHhhhhhhhhhhhhhhhhHHk.....",
+      ".......kHHssssssssssssssssHHk.....",
+      ".......kHssssssssssssssssssHk.....",
+      "..kkkkkkHsssBBBBssssBBBBsssHkk....",
+      "..ksksksSssssewssssssewssssSsk....",
+      "..ksssksSsssseesssssseessssSsk....",
+      "..kssskssssssssssSSssssssssssk....",
+      "..kksskkssrrssssssssssssrrsskk....",
+      "...kksskssrrssssbbbbssssrrssk.....",
+      "....ksskksssssssmmmmssssssskk.....",
+      "....kksskksssssssbbssssssskk......",
+      ".....kksskkkssssbbbbsssskkk.......",
+      "......kksskkkkssbbbbsskkk.........",
+      ".......kktttkkksbbbbskk...........",
+      "........kktttktttsstttkkk.........",
+      ".........kkkttttttttttttkk........",
+      "...........kkttTtttttttttk........",
+      "............kkttttttttkttk........",
+      ".............ktttootttkssk........",
+      ".............kttttttttkssk........",
+      ".............kjjjjjjjjkkkk........",
+      ".............kjjjkkjjjk...........",
+      "............kkjjjkkjjjkk..........",
+      "............kwwwwkkwwwwk..........",
+      "............kggggkkggggk..........",
+      "............kkkkkkkkkkkk..........",
+      ".................................."
+    ],
+    "classes": {
+      "e": "px-eyes"
+    }
+  },
   "laurinPoint": {
     "rows": [
       "...............kkkkkk.............",
