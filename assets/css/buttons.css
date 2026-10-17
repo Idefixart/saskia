@@ -47,12 +47,12 @@
 .btn::after {
   content: '';
   position: absolute;
-  top: 7px;
-  left: 10px;
-  width: 6px;
-  height: 6px;
+  top: 5px;
+  left: 6px;
+  width: 5px;
+  height: 5px;
   background: rgba(255, 255, 255, 0.85);
-  box-shadow: 8px 0 0 rgba(255, 255, 255, 0.5), 0 8px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 6px 0 0 rgba(255, 255, 255, 0.5), 0 6px 0 rgba(255, 255, 255, 0.3);
   pointer-events: none;
 }
 

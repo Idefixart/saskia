@@ -31,7 +31,6 @@
 </head>
 <body>
 <a class="skip" href="#post">Zum Inhalt springen</a>
-<div class="grain" aria-hidden="true"></div>
 
 <svg class="svg-defs" aria-hidden="true" focusable="false">
   <defs>
@@ -104,6 +103,7 @@
     <span>Saskias Claude-Welt</span>
   </a>
   <div class="topbar-tools">
+    <a class="take-link" href="#mitnehmen">Buddy holen</a>
     <button class="sound-toggle" type="button" aria-pressed="false">
       <svg class="sound-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path class="sound-body" d="M2 6h3l4-3v10l-4-3H2z"/><path class="sound-on" d="M11 5h1v1h1v4h-1v1h-1v-1h1V6h-1z"/><path class="sound-off" d="M11 6h1v1h1V6h1v1h-1v1h1v1h-1v-1h-1v1h-1v-1h1V7h-1z"/></svg>
       <span class="visually-hidden">Ton</span>
@@ -292,7 +292,44 @@
       </span>
     </a>
 
-    <a class="scroll-cue" href="#post">Runter in die Stadt</a>
+    <a class="scroll-cue" href="#mitnehmen">Runter in die Stadt</a>
+  </section>
+
+  <section id="mitnehmen" class="chapter tone-mint take" aria-labelledby="take-title">
+    <div class="wrap take-grid">
+      <div class="take-copy">
+        <span class="chapter-sign">Zum Mitnehmen</span>
+        <h2 id="take-title">Dein Claude-Buddy fürs eigene Claude.</h2>
+        <p class="chapter-lead">Alles liegt in einem Repo: der Laurin-Helfer als Skill und Pixel-Laurin, der dir auf dem Bildschirm zeigt, wo du klicken musst.</p>
+        <div class="copybox take-repo">
+          <pre id="repo-url">https://github.com/Idefixart/saskia</pre>
+          <button class="btn btn--mint" type="button" data-copy-target="repo-url">Repo-Link kopieren</button>
+        </div>
+        <div class="take-actions">
+          <a class="btn btn--pink" href="https://github.com/Idefixart/saskia" target="_blank" rel="noopener">Repo auf GitHub öffnen</a>
+          <a class="btn" href="downloads/laurin-buddy.mcpb" download>Buddy laden (.mcpb)</a>
+          <a class="btn btn--ghost" href="downloads/laurin-helfer.zip" download>Helfer-Skill laden (ZIP)</a>
+        </div>
+        <span class="take-crew" aria-hidden="true">
+          <span data-sprite="laurinThumbs"></span>
+          <span data-sprite="clawd"></span>
+        </span>
+      </div>
+      <div class="take-steps card">
+        <h3>So installierst du ihn</h3>
+        <ol class="steps">
+          <li><strong>Pixel-Laurin auf deinen Bildschirm:</strong> <code>laurin-buddy.mcpb</code> laden und doppelklicken. Claude Desktop installiert ihn. Wenn Claude fragt, die Werkzeuge erlauben.</li>
+          <li><strong>Laurin-Helfer in die Desktop-App:</strong> Settings › Capabilities › „Code execution and file creation“ an, dann Customize › Skills › „+“ › „Upload a skill“ › <code>laurin-helfer.zip</code>.</li>
+          <li><strong>In Antigravity:</strong> im Terminal einfügen:
+            <div class="copybox">
+              <pre id="repo-antigravity">npx skills add Idefixart/saskia -a antigravity -g -y --copy</pre>
+              <button class="btn btn--mint" type="button" data-copy-target="repo-antigravity">Befehl kopieren</button>
+            </div>
+          </li>
+          <li><strong>Ausprobieren:</strong> „Zeig mir, wo ich in Shopify ein Produkt anlege.“</li>
+        </ol>
+      </div>
+    </div>
   </section>
 
   <section id="post" class="chapter tone-sand" aria-labelledby="post-title">

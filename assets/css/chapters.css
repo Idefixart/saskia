@@ -1420,3 +1420,142 @@ code {
     animation: none;
   }
 }
+
+/* ---------- readability: pixel font only for short labels, longer text in the body font ---------- */
+.rule-quote {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--step--1);
+  line-height: 1.45;
+}
+
+.where {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.hero-bubble,
+.gift-bubble,
+.demo-bubble {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+}
+
+.skill-cat,
+.skill-fav {
+  font-size: 0.8rem;
+}
+
+.postcard {
+  rotate: -0.5deg;
+}
+
+.copybox pre {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.card p,
+.stop p,
+.chapter-lead {
+  max-width: 68ch;
+}
+
+/* ---------- Zum Mitnehmen (repo + install, right under the hero) ---------- */
+.take-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 960px) {
+  .take-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.take-copy {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.take-copy h2 {
+  font-size: var(--step-3);
+}
+
+.take-repo {
+  width: 100%;
+  margin: 0;
+}
+
+.take-repo pre {
+  font-size: clamp(0.8rem, 0.62rem + 1.1vw, 1.25rem);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.take-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.take-crew {
+  display: flex;
+  align-items: end;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.take-crew [data-sprite]:first-child {
+  width: 96px;
+}
+
+.take-crew [data-sprite]:last-child {
+  width: 54px;
+}
+
+.take-steps h3 {
+  margin-bottom: 1rem;
+  font-size: var(--step-2);
+}
+
+.take-steps .copybox {
+  margin-top: 0.6rem;
+}
+
+/* Topbar shortcut to the repo block. */
+.take-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0.3rem 0.9rem;
+  background: var(--mint);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-hard-s);
+  font-weight: 800;
+  font-stretch: 85%;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .brand > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .brand {
+    padding: 0.35rem 0.45rem;
+  }
+}
