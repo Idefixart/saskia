@@ -52,32 +52,28 @@ export function parseGeometry(stdout) {
   return geo;
 }
 
-async function readAndDelete(path) {
-  try {
-    return (await readFile(path)).toString('base64');
-  } finally {
-    await rm(path, { force: true });
-  }
-}
-
 async function captureWindows(scriptsDir) {
   const out = tempJpeg();
-  const stdout = await run('powershell.exe', [
-    '-NoProfile',
-    '-NonInteractive',
-    '-ExecutionPolicy',
-    'Bypass',
-    '-File',
-    join(scriptsDir, 'screenshot-windows.ps1'),
-    '-Out',
-    out,
-    '-MaxWidth',
-    String(MAX_WIDTH),
-  ]);
-  const geo = parseGeometry(stdout);
-  const data = await readAndDelete(geo.path || out);
-  const { left, top, width, height, imgW, imgH } = geo;
-  return { data, mimeType: 'image/jpeg', shot: { left, top, width, height, imgW, imgH } };
+  try {
+    const stdout = await run('powershell.exe', [
+      '-NoProfile',
+      '-NonInteractive',
+      '-ExecutionPolicy',
+      'Bypass',
+      '-File',
+      join(scriptsDir, 'screenshot-windows.ps1'),
+      '-Out',
+      out,
+      '-MaxWidth',
+      String(MAX_WIDTH),
+    ]);
+    const { left, top, width, height, imgW, imgH } = parseGeometry(stdout);
+    // Read our own path: the echoed one went through the console code page (umlauts in user names).
+    const data = (await readFile(out)).toString('base64');
+    return { data, mimeType: 'image/jpeg', shot: { left, top, width, height, imgW, imgH } };
+  } finally {
+    await rm(out, { force: true });
+  }
 }
 
 // Dev only: the main display on macOS. Coordinates are not used there (no overlay).
@@ -91,7 +87,7 @@ async function captureMac() {
     if (!width || !height) throw new Error('sips could not read the screenshot size');
     const { imgW, imgH } = fitWidth(width, height, MAX_WIDTH);
     if (imgW !== width) await run('sips', ['--resampleWidth', String(imgW), out]);
-    const data = await readAndDelete(out);
+    const data = (await readFile(out)).toString('base64');
     return { data, mimeType: 'image/jpeg', shot: { left: 0, top: 0, width, height, imgW, imgH } };
   } finally {
     await rm(out, { force: true });
