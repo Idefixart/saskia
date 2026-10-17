@@ -12,7 +12,10 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport: { width: 900, height: 1270 } });
   page.on('pageerror', (e) => console.error('pageerror:', e.message));
-  await page.addInitScript(() => localStorage.setItem('theme', 'day'));
+  await page.addInitScript(() => {
+    localStorage.setItem('theme', 'day');
+    localStorage.setItem('opened', '1');
+  });
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
     document.documentElement.setAttribute('data-theme', 'day');
