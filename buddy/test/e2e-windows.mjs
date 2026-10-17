@@ -38,15 +38,28 @@ function captureDesktop({ out, zoomOut, imgX, imgY, imgW, imgH }) {
   const script = `
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing
-Add-Type -IgnoreWarnings -TypeDefinition @"
+Add-Type -IgnoreWarnings -ReferencedAssemblies System.Drawing -TypeDefinition @"
 using System;
 using System.Runtime.InteropServices;
 public static class E2eDpi {
   [DllImport("user32.dll")] static extern bool SetProcessDpiAwarenessContext(IntPtr v);
   [DllImport("user32.dll")] static extern bool SetProcessDPIAware();
+  [DllImport("user32.dll")] static extern IntPtr GetDC(IntPtr h);
+  [DllImport("user32.dll")] static extern int ReleaseDC(IntPtr h, IntPtr dc);
+  [DllImport("gdi32.dll")] static extern bool BitBlt(IntPtr d, int x, int y, int w, int h, IntPtr s, int sx, int sy, int rop);
   public static void Enable() {
     try { if (SetProcessDpiAwarenessContext(new IntPtr(-4))) return; } catch (Exception) { }
     try { SetProcessDPIAware(); } catch (Exception) { }
+  }
+  // SRCCOPY | CAPTUREBLT via BitBlt: CopyFromScreen rejects the combined enum value.
+  public static void Copy(System.Drawing.Bitmap bmp, int left, int top) {
+    IntPtr screen = GetDC(IntPtr.Zero);
+    using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bmp)) {
+      IntPtr dest = g.GetHdc();
+      BitBlt(dest, 0, 0, bmp.Width, bmp.Height, screen, left, top, 0x00CC0020 | 0x40000000);
+      g.ReleaseHdc(dest);
+    }
+    ReleaseDC(IntPtr.Zero, screen);
   }
 }
 "@
@@ -56,10 +69,7 @@ $mon = [System.Windows.Forms.Screen]::FromPoint([System.Windows.Forms.Cursor]::P
 $tx = [Math]::Min([Math]::Max($mon.Left + [int][Math]::Floor(${imgX} * $mon.Width / ${imgW} + 0.5), $mon.Left), $mon.Right - 1)
 $ty = [Math]::Min([Math]::Max($mon.Top + [int][Math]::Floor(${imgY} * $mon.Height / ${imgH} + 0.5), $mon.Top), $mon.Bottom - 1)
 $bmp = New-Object System.Drawing.Bitmap $vs.Width, $vs.Height, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
-$g = [System.Drawing.Graphics]::FromImage($bmp)
-$op = [System.Drawing.CopyPixelOperation]::SourceCopy -bor [System.Drawing.CopyPixelOperation]::CaptureBlt
-$g.CopyFromScreen($vs.Left, $vs.Top, 0, 0, $vs.Size, $op)
-$g.Dispose()
+[E2eDpi]::Copy($bmp, $vs.Left, $vs.Top)
 $bmp.Save(${quote(out)}, [System.Drawing.Imaging.ImageFormat]::Png)
 $cx = $tx - $vs.Left
 $cy = $ty - $vs.Top

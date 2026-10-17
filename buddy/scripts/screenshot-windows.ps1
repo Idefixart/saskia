@@ -10,17 +10,59 @@ param(
 $ErrorActionPreference = 'Stop'
 
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing
-Add-Type -IgnoreWarnings -TypeDefinition @'
+Add-Type -IgnoreWarnings -ReferencedAssemblies System.Drawing -TypeDefinition @'
 using System;
 using System.Runtime.InteropServices;
 
 public static class LaurinBuddyDpi
 {
+    private const int SRCCOPY = 0x00CC0020;
+    private const int CAPTUREBLT = 0x40000000;
+
     [DllImport("user32.dll")]
     private static extern bool SetProcessDpiAwarenessContext(IntPtr value);
 
     [DllImport("user32.dll")]
     private static extern bool SetProcessDPIAware();
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetDC(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+
+    [DllImport("gdi32.dll", SetLastError = true)]
+    private static extern bool BitBlt(IntPtr hdcDest, int xDest, int yDest, int width, int height, IntPtr hdcSrc, int xSrc, int ySrc, int rop);
+
+    // Copies the screen rectangle starting at (left, top) into the bitmap, including layered
+    // windows (menus, tooltips). Calls BitBlt directly because Graphics.CopyFromScreen rejects
+    // SourceCopy | CaptureBlt as an invalid CopyPixelOperation value.
+    public static void CopyScreen(System.Drawing.Bitmap target, int left, int top)
+    {
+        IntPtr screen = GetDC(IntPtr.Zero);
+        try
+        {
+            using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(target))
+            {
+                IntPtr dest = graphics.GetHdc();
+                try
+                {
+                    if (!BitBlt(dest, 0, 0, target.Width, target.Height, screen, left, top, SRCCOPY | CAPTUREBLT))
+                    {
+                        throw new InvalidOperationException("BitBlt failed with Win32 error " + Marshal.GetLastWin32Error());
+                    }
+                }
+                finally
+                {
+                    graphics.ReleaseHdc(dest);
+                }
+            }
+        }
+        finally
+        {
+            ReleaseDC(IntPtr.Zero, screen);
+        }
+    }
 
     public static void Enable()
     {
@@ -50,14 +92,7 @@ $cursor = [System.Windows.Forms.Cursor]::Position
 $bounds = [System.Windows.Forms.Screen]::FromPoint($cursor).Bounds
 
 $full = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
-$graphics = [System.Drawing.Graphics]::FromImage($full)
-try {
-  # CaptureBlt includes layered windows such as menus and tooltips.
-  $op = [System.Drawing.CopyPixelOperation]::SourceCopy -bor [System.Drawing.CopyPixelOperation]::CaptureBlt
-  $graphics.CopyFromScreen($bounds.Left, $bounds.Top, 0, 0, $bounds.Size, $op)
-} finally {
-  $graphics.Dispose()
-}
+[LaurinBuddyDpi]::CopyScreen($full, $bounds.Left, $bounds.Top)
 
 # Same rule as geometry.js fitWidth(): keep small screens, else MaxWidth wide, aspect kept (round half up).
 if ($bounds.Width -le $MaxWidth) {
