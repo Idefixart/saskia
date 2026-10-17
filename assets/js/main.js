@@ -16,6 +16,11 @@ initLibrary();
 initDoctor();
 initLife();
 
+// Printing from the browser: open every diagnosis so the PDF shows all fixes.
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('details').forEach((d) => (d.open = true));
+});
+
 document.querySelector('.crew-clawd')?.addEventListener('click', (event) => {
   const clawd = event.currentTarget;
   clawd.classList.remove('hop');

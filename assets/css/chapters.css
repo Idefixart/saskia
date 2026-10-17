@@ -535,6 +535,7 @@ code {
 }
 
 .rule-big {
+  padding-bottom: clamp(7rem, 5rem + 6vw, 9rem);
   background: var(--pink);
   color: #3a1f35;
 }

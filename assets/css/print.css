@@ -1,0 +1,117 @@
+/* Print / PDF: the hero becomes a cover, interactive bits turn into readable text. */
+@page {
+  size: A4;
+  margin: 12mm 11mm;
+}
+
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  font-size: 11pt;
+}
+
+.grain,
+.topbar,
+.scroll-cue,
+.birds,
+.walker,
+.confetti,
+.sos-button,
+.sos-again,
+.sos-tip,
+.brief-form,
+.filters,
+.copybox .btn,
+.kit .btn,
+.skip,
+.footer-small a {
+  display: none !important;
+}
+
+.hero {
+  min-height: 0;
+  height: 270mm;
+  break-after: page;
+}
+
+.sun,
+.skyline,
+.midhills,
+.clouds,
+.flight {
+  translate: none !important;
+}
+
+.chapter {
+  padding-block: 12mm;
+}
+
+.chapter::before,
+.footer::before {
+  display: none;
+}
+
+.chapter-head,
+h2,
+h3 {
+  break-after: avoid;
+}
+
+.card,
+.stop,
+.rule,
+.skill,
+.power,
+.kit-item,
+.model,
+.diagnosis,
+.versus-rows li,
+.copybox {
+  break-inside: avoid;
+}
+
+.sos-result {
+  display: grid !important;
+}
+
+.brief {
+  grid-template-columns: 1fr !important;
+}
+
+.brief-out {
+  position: static !important;
+}
+
+.brief-box pre {
+  min-height: 0;
+}
+
+.diagnosis summary::after {
+  display: none;
+}
+
+.demo-buddy {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.skill-foot a::after {
+  content: ' (github.com/' attr(data-repo) ')';
+  font-size: 0.85em;
+}
+
+.kit-item::after {
+  content: 'Download: idefixart.github.io/saskia/#starterkit';
+  font-size: 0.8em;
+  color: var(--text-soft);
+}

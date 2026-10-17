@@ -13,6 +13,7 @@ const formatStars = (stars) => `${new Intl.NumberFormat('de-DE').format(stars)} 
 function skillCard(skill) {
   const category = CATEGORIES.find((c) => c.id === skill.cat);
   const repoLink = h('a', { href: `https://github.com/${skill.repo}`, rel: 'noopener', target: '_blank', textContent: skill.repo });
+  repoLink.dataset.repo = skill.repo;
   const meta = skill.stars ? formatStars(skill.stars) : skill.official ? 'offiziell' : 'von Laurin';
   return h(
     'li',

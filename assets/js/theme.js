@@ -8,8 +8,6 @@ export function initTheme() {
   const apply = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     const night = theme === 'night';
-    button.setAttribute('aria-pressed', String(night));
-    button.setAttribute('aria-label', night ? 'Zum Tagmodus wechseln' : 'Zum Nachtmodus wechseln');
     label.textContent = night ? 'Tag' : 'Nacht';
     meta?.setAttribute('content', night ? '#1b1030' : '#ec7397');
   };
