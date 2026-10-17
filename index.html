@@ -33,6 +33,40 @@
 <a class="skip" href="#post">Zum Inhalt springen</a>
 <div class="grain" aria-hidden="true"></div>
 
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="sc-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" style="stop-color: var(--sky-top)"/>
+      <stop offset="0.55" style="stop-color: var(--sky-mid)"/>
+      <stop offset="1" style="stop-color: var(--sky-low)"/>
+    </linearGradient>
+    <pattern id="sc-win" width="44" height="40" patternUnits="userSpaceOnUse">
+      <rect x="8" y="8" width="26" height="22" rx="3" class="sc-win"/>
+    </pattern>
+    <symbol id="sc-palm" viewBox="-60 0 320 640" overflow="visible">
+      <path class="palm-trunk" d="M110 640 C 120 480 150 300 140 120"/>
+      <path class="palm-rings" d="M110 640 C 120 480 150 300 140 120"/>
+      <g class="palm-crown" transform="translate(140 120)">
+        <use href="#frond" transform="rotate(-160) scale(1 -1)"/>
+        <use href="#frond" transform="rotate(-110) scale(1 -1)"/>
+        <use href="#frond" transform="rotate(-60) scale(1 -1)"/>
+        <use href="#frond" transform="rotate(-15)"/>
+        <use href="#frond" transform="rotate(25)"/>
+        <use href="#frond" transform="rotate(155) scale(1 -1)"/>
+        <use href="#frond" transform="rotate(200) scale(1 -1)"/>
+      </g>
+    </symbol>
+    <symbol id="sc-envelope" viewBox="0 0 40 28" overflow="visible">
+      <rect x="1.5" y="1.5" width="37" height="25" rx="3" class="env-body"/>
+      <path d="M2 3 L20 16 L38 3" class="env-flap"/>
+    </symbol>
+    <symbol id="sc-book" viewBox="0 0 44 34" overflow="visible">
+      <path class="book-cover" d="M22 6 C 14 1 6 1 2 4 V 30 C 6 27 14 27 22 32 C 30 27 38 27 42 30 V 4 C 38 1 30 1 22 6 Z"/>
+      <path class="book-page" d="M22 6 V 32"/>
+    </symbol>
+  </defs>
+</svg>
+
 <div id="gift" class="gift" role="dialog" aria-modal="true" aria-labelledby="gift-title" tabindex="-1" hidden>
   <div class="gift-rays" aria-hidden="true"></div>
   <div class="gift-stage">
@@ -305,6 +339,67 @@
   </nav>
 
   <section id="tools" class="chapter tone-lilac" aria-labelledby="tools-title">
+    <figure class="scene scene-garage" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="1190" cy="210" r="96"/>
+        <path class="sc-far" d="M0 382 V250 H90 V212 H170 V272 H250 V232 H330 V382 Z M1080 382 V240 H1170 V196 H1250 V262 H1340 V222 H1440 V382 Z"/>
+        <use href="#sc-palm" x="110" y="110" width="150" height="300"/>
+        <use href="#sc-palm" x="1190" y="140" width="130" height="260"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-cream" x="440" y="150" width="560" height="232"/>
+          <path class="sc-ink f-lilac" d="M418 152 L720 88 L1022 152 Z"/>
+          <rect class="sc-ink f-mustard" x="566" y="104" width="308" height="42" rx="6"/>
+          <text class="sc-text" x="720" y="135" font-size="28">WERKZEUG-GARAGE</text>
+
+          <!-- left bay: thinking -->
+          <rect class="sc-ink f-dark" x="466" y="196" width="232" height="186"/>
+          <rect class="sc-ink f-pink" x="530" y="166" width="104" height="24" rx="4"/>
+          <text class="sc-pixel" x="582" y="184" font-size="15">DENKEN</text>
+          <rect class="sc-ink f-clawd" x="486" y="312" width="192" height="14"/>
+          <rect class="sc-ink f-clawd" x="498" y="326" width="12" height="56"/>
+          <rect class="sc-ink f-clawd" x="654" y="326" width="12" height="56"/>
+          <rect class="sc-ink f-cream" x="540" y="248" width="86" height="58" rx="4"/>
+          <path class="sc-ink f-cream" d="M528 312 L540 304 H626 L638 312 Z"/>
+          <rect class="chat-a f-pink" x="550" y="258" width="44" height="12" rx="4"/>
+          <rect class="chat-b f-mint" x="570" y="276" width="46" height="12" rx="4"/>
+          <rect class="chat-c f-pink" x="550" y="292" width="30" height="8" rx="3"/>
+
+          <!-- right bay: building -->
+          <rect class="sc-ink f-dark" x="742" y="196" width="232" height="186"/>
+          <rect class="sc-ink f-mint" x="808" y="166" width="104" height="24" rx="4"/>
+          <text class="sc-pixel" x="860" y="184" font-size="15">BAUEN</text>
+          <rect class="sc-ink f-clawd" x="762" y="312" width="192" height="14"/>
+          <rect class="sc-ink f-clawd" x="774" y="326" width="12" height="56"/>
+          <rect class="sc-ink f-clawd" x="930" y="326" width="12" height="56"/>
+          <rect class="sc-ink f-asphalt" x="790" y="236" width="100" height="70" rx="5"/>
+          <text class="code-glyph" x="840" y="282" font-size="30">&lt;/&gt;</text>
+          <rect class="sc-ink f-cream" x="832" y="306" width="16" height="8"/>
+          <g class="sparks">
+            <circle cx="924" cy="300" r="3"/><circle cx="930" cy="296" r="2.5"/><circle cx="920" cy="294" r="2"/>
+            <circle cx="934" cy="302" r="2"/><circle cx="926" cy="290" r="2.5"/>
+          </g>
+
+          <!-- roll-up doors -->
+          <g class="garage-door door-left">
+            <rect class="sc-ink f-mint" x="466" y="196" width="232" height="58"/>
+            <path class="sc-ink f-none" d="M466 214 H698 M466 232 H698"/>
+          </g>
+          <g class="garage-door door-right">
+            <rect class="sc-ink f-pink" x="742" y="196" width="232" height="44"/>
+            <path class="sc-ink f-none" d="M742 214 H974"/>
+          </g>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="bob-fast" data-sprite="clawd" data-x="872" data-y="270" data-w="44"></g>
+        <g class="bob" data-sprite="laurinThumbs" data-x="660" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">01 · Werkzeug-Garage</span>
@@ -470,6 +565,54 @@
   </section>
 
   <section id="regeln" class="chapter tone-mint" aria-labelledby="rules-title">
+    <figure class="scene scene-boulevard" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="240" cy="230" r="90"/>
+        <path class="sc-far" d="M0 382 V262 H120 V226 H210 V282 H300 V382 Z M1120 382 V230 H1210 V262 H1310 V214 H1440 V382 Z"/>
+        <use href="#sc-palm" x="1180" y="120" width="150" height="300"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-pink" x="388" y="190" width="170" height="192"/>
+          <rect x="398" y="206" width="150" height="80" fill="url(#sc-win)"/>
+          <path class="sc-ink f-cream" d="M380 300 H566 L556 324 H390 Z"/>
+          <rect class="sc-ink f-mint" x="558" y="150" width="170" height="232"/>
+          <rect x="568" y="166" width="150" height="120" fill="url(#sc-win)"/>
+          <path class="sc-ink f-mustard" d="M550 300 H736 L726 324 H560 Z"/>
+          <rect class="sc-ink f-mustard" x="728" y="210" width="160" height="172"/>
+          <rect x="738" y="226" width="140" height="60" fill="url(#sc-win)"/>
+          <path class="sc-ink f-pink" d="M720 300 H896 L886 324 H730 Z"/>
+          <rect class="sc-ink f-lilac" x="888" y="170" width="160" height="212"/>
+          <rect x="898" y="186" width="140" height="100" fill="url(#sc-win)"/>
+          <path class="sc-ink f-mint" d="M880 300 H1056 L1046 324 H890 Z"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="signs">
+          <g transform="translate(436 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-cream" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">1</text></g>
+          <g transform="translate(516 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-mustard" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">2</text></g>
+          <g transform="translate(596 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-cream" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">3</text></g>
+          <g transform="translate(796 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-mustard" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">4</text></g>
+          <g transform="translate(866 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-cream" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">5</text></g>
+          <g transform="translate(936 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-mustard" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">6</text></g>
+          <g transform="translate(1006 0)"><rect class="sc-ink f-dark" x="-3" y="250" width="6" height="132"/><circle class="sc-ink f-cream" cx="0" cy="240" r="22"/><text class="sc-pixel" x="0" y="248" font-size="22">7</text></g>
+        </g>
+
+        <g class="traffic-light">
+          <rect class="sc-ink f-dark" x="745" y="250" width="6" height="132"/>
+          <rect class="sc-ink f-dark" x="728" y="172" width="40" height="88" rx="8"/>
+          <circle class="tl tl-red" cx="748" cy="192" r="10"/>
+          <circle class="tl tl-yellow" cx="748" cy="216" r="10"/>
+          <circle class="tl tl-green" cx="748" cy="240" r="10"/>
+        </g>
+
+        <g class="walk-across"><g class="bob-fast" data-sprite="clawd" data-x="0" data-y="344" data-w="40"></g></g>
+        <g class="bob" data-sprite="laurinPoint" data-x="606" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">03 · Regel-Boulevard</span>
@@ -488,6 +631,49 @@
   </section>
 
   <section id="baukasten" class="chapter tone-sand" aria-labelledby="brief-title">
+    <figure class="scene scene-post" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="1210" cy="220" r="90"/>
+        <path class="sc-far" d="M0 382 V244 H100 V206 H190 V266 H290 V382 Z M1110 382 V250 H1200 V210 H1300 V262 H1440 V382 Z"/>
+        <use href="#sc-palm" x="130" y="120" width="150" height="300"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-cream" x="456" y="158" width="528" height="224"/>
+          <rect class="sc-ink f-pink" x="436" y="140" width="568" height="26" rx="4"/>
+          <rect class="sc-ink f-mustard" x="610" y="96" width="220" height="56" rx="8"/>
+          <text class="sc-text" x="720" y="136" font-size="34">POST</text>
+          <use href="#sc-envelope" x="628" y="110" width="36" height="25"/>
+          <rect x="474" y="184" width="134" height="88" fill="url(#sc-win)"/>
+          <rect x="832" y="184" width="134" height="88" fill="url(#sc-win)"/>
+          <rect class="sc-ink f-mint" x="660" y="250" width="120" height="132"/>
+          <path class="sc-ink f-none" d="M720 250 V382"/>
+          <path class="sc-ink f-mustard" d="M644 236 H796 L808 254 H632 Z"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="mailbox">
+          <rect class="sc-ink f-dark" x="948" y="330" width="8" height="52"/>
+          <rect class="sc-ink f-mustard" x="912" y="260" width="80" height="74" rx="10"/>
+          <rect class="sc-ink f-dark" x="928" y="276" width="48" height="8" rx="3"/>
+          <use href="#sc-envelope" x="934" y="296" width="30" height="21"/>
+        </g>
+
+        <g class="letters">
+          <use class="letter l1" href="#sc-envelope" x="836" y="300" width="40" height="28"/>
+          <use class="letter l2" href="#sc-envelope" x="836" y="300" width="40" height="28"/>
+          <use class="letter l3" href="#sc-envelope" x="836" y="300" width="40" height="28"/>
+        </g>
+        <use class="letter letter-copied" href="#sc-envelope" x="836" y="300" width="40" height="28"/>
+
+        <g class="bob-fast" data-sprite="clawd" data-x="826" data-y="330" data-w="52"></g>
+        <rect class="sc-ink f-clawd" x="866" y="350" width="22" height="20" rx="4"/>
+        <g class="bob" data-sprite="laurinWave" data-x="496" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">04 · Brief-Werkstatt</span>
@@ -537,6 +723,64 @@
   </section>
 
   <section id="workflow" class="chapter tone-peach" aria-labelledby="flow-title">
+    <figure class="scene scene-build" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="230" cy="220" r="86"/>
+        <path class="sc-far" d="M0 382 V250 H110 V214 H200 V270 H300 V382 Z M1100 382 V236 H1200 V200 H1290 V256 H1440 V382 Z"/>
+        <use href="#sc-palm" x="1190" y="130" width="140" height="280"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-cream" x="560" y="250" width="300" height="132"/>
+          <rect x="572" y="262" width="276" height="80" fill="url(#sc-win)"/>
+          <path class="sc-ink f-none scaffold" d="M560 250 V160 M635 250 V160 M710 250 V160 M785 250 V160 M860 250 V160 M560 160 H860 M560 205 H860 M560 160 L635 205 M635 160 L710 205 M710 160 L785 205 M785 160 L860 205"/>
+          <rect class="sc-ink f-pink" x="560" y="244" width="300" height="10"/>
+        </g>
+
+        <g class="crane">
+          <path class="sc-ink f-mustard" d="M930 382 V110 H954 V382 Z"/>
+          <path class="sc-ink f-none" d="M930 382 L954 350 L930 318 L954 286 L930 254 L954 222 L930 190 L954 158 L930 126"/>
+          <g class="crane-jib">
+            <rect class="sc-ink f-mustard" x="600" y="96" width="460" height="18"/>
+            <path class="sc-ink f-none" d="M600 114 L630 96 L660 114 L690 96 L720 114 L750 96 L780 114 L810 96 L840 114 L870 96 L900 114 L930 96 L960 114 L990 96 L1020 114 L1050 96"/>
+            <rect class="sc-ink f-asphalt" x="1000" y="114" width="56" height="36"/>
+            <rect class="sc-ink f-pink" x="922" y="70" width="40" height="30" rx="4"/>
+            <g class="crane-load">
+              <path class="sc-ink f-none" d="M700 114 V176"/>
+              <g transform="translate(640 176)">
+                <rect class="sc-ink f-cream" x="0" y="0" width="120" height="74" rx="6"/>
+                <rect class="sc-ink f-pink" x="0" y="0" width="120" height="16" rx="6"/>
+                <circle class="f-dark" cx="12" cy="8" r="3"/><circle class="f-dark" cx="22" cy="8" r="3"/><circle class="f-dark" cx="32" cy="8" r="3"/>
+                <rect class="f-mint" x="12" y="26" width="60" height="10" rx="3"/>
+                <rect class="f-lilac" x="12" y="42" width="96" height="8" rx="3"/>
+                <rect class="f-mustard" x="12" y="56" width="40" height="10" rx="3"/>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="cones">
+          <path class="sc-ink f-clawd" d="M430 382 L446 330 L462 382 Z"/><path class="f-white" d="M438 356 H454 L451 346 H441 Z"/>
+          <path class="sc-ink f-clawd" d="M884 382 L900 330 L916 382 Z"/><path class="f-white" d="M892 356 H908 L905 346 H895 Z"/>
+        </g>
+        <g class="barrier">
+          <rect class="sc-ink f-white" x="976" y="334" width="80" height="20"/>
+          <path class="f-pink" d="M986 334 h14 l-10 20 h-14 z M1014 334 h14 l-10 20 h-14 z M1042 334 h14 l-10 20 h-10 z"/>
+          <rect class="sc-ink f-dark" x="984" y="354" width="6" height="28"/><rect class="sc-ink f-dark" x="1042" y="354" width="6" height="28"/>
+        </g>
+        <g class="bob" data-sprite="laurinBuilder" data-x="470" data-y="262" data-w="120"></g>
+        <g class="wheelbarrow">
+          <path class="sc-ink f-mint" d="M770 336 H850 L838 366 H782 Z"/>
+          <circle class="sc-ink f-dark" cx="800" cy="372" r="10"/>
+          <path class="sc-ink f-none" d="M850 340 L874 330"/>
+          <g class="bob-fast" data-sprite="clawd" data-x="786" data-y="294" data-w="46"></g>
+        </g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">05 · Baustellen-Route</span>
@@ -556,6 +800,57 @@
   </section>
 
   <section id="shopify" class="chapter tone-mint" aria-labelledby="shop-title">
+    <figure class="scene scene-mall" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="1220" cy="214" r="92"/>
+        <path class="sc-far" d="M0 382 V256 H100 V220 H200 V274 H300 V382 Z M1120 382 V240 H1210 V204 H1310 V262 H1440 V382 Z"/>
+        <use href="#sc-palm" x="120" y="120" width="150" height="300"/>
+
+        <!-- the wobbly self-built shop -->
+        <g class="diy">
+          <g class="diy-hut">
+            <path class="sc-ink f-clawd" d="M410 382 L414 270 L540 262 L546 382 Z"/>
+            <path class="sc-ink f-none" d="M412 300 L542 292 M413 330 L544 324 M414 356 L545 352"/>
+            <path class="sc-ink f-mustard" d="M398 272 L478 226 L556 266 Z"/>
+            <rect class="sc-ink f-dark" x="448" y="314" width="56" height="68"/>
+          </g>
+          <g class="diy-sign">
+            <rect class="sc-ink f-cream" x="404" y="226" width="150" height="34" rx="3"/>
+            <text class="sc-pixel" x="479" y="249" font-size="15">Selbstgebaut</text>
+          </g>
+          <rect class="sc-ink f-mustard diy-plank" x="516" y="248" width="14" height="70" rx="2"/>
+          <g class="diy-dust"><circle cx="530" cy="378" r="10"/><circle cx="546" cy="372" r="7"/><circle cx="516" cy="374" r="6"/></g>
+        </g>
+
+        <!-- the mall -->
+        <g class="dim">
+          <path class="sc-ink f-lilac" d="M610 382 V182 Q 610 150 642 150 H1010 Q 1042 150 1042 182 V382 Z"/>
+          <rect x="626" y="196" width="400" height="76" fill="url(#sc-win)"/>
+          <rect class="sc-ink f-cream" x="740" y="104" width="172" height="58" rx="12"/>
+          <path class="sc-ink bag-fill" d="M770 120 H808 L812 152 H766 Z"/>
+          <path class="sc-ink f-none" d="M778 122 C 778 108 800 108 800 122"/>
+          <text class="sc-text" x="860" y="146" font-size="30">MALL</text>
+          <rect class="sc-ink f-glass" x="740" y="286" width="172" height="96"/>
+          <rect class="sc-ink f-glass mall-door door-a" x="740" y="286" width="86" height="96"/>
+          <rect class="sc-ink f-glass mall-door door-b" x="826" y="286" width="86" height="96"/>
+          <path class="sc-ink f-mint" d="M722 270 H930 L944 290 H708 Z"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="cart">
+          <path class="sc-ink f-none" d="M640 330 H660 L672 368 H716 L726 342 H664"/>
+          <circle class="sc-ink f-dark" cx="676" cy="376" r="6"/><circle class="sc-ink f-dark" cx="712" cy="376" r="6"/>
+        </g>
+        <g class="bob" data-sprite="laurinPoint" data-x="548" data-y="262" data-w="120"></g>
+        <g class="bob-fast" data-sprite="clawd" data-x="946" data-y="330" data-w="52"></g>
+        <rect class="sc-ink bag-fill" x="996" y="348" width="22" height="26" rx="3"/>
+        <rect class="sc-ink f-pink" x="930" y="352" width="18" height="22" rx="3"/>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">06 · Shopify-Mall</span>
@@ -617,6 +912,51 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
   </section>
 
   <section id="skills" class="chapter tone-sand" aria-labelledby="skills-title">
+    <figure class="scene scene-library" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="240" cy="210" r="90"/>
+        <path class="sc-far" d="M0 382 V250 H100 V216 H210 V270 H300 V382 Z M1110 382 V236 H1210 V198 H1300 V256 H1440 V382 Z"/>
+        <use href="#sc-palm" x="1190" y="120" width="150" height="300"/>
+
+        <g class="dim">
+          <path class="sc-ink f-pink" d="M460 176 L720 104 L980 176 Z"/>
+          <text class="sc-text" x="720" y="164" font-size="28">BIBLIOTHEK</text>
+          <rect class="sc-ink f-cream" x="470" y="176" width="500" height="20"/>
+          <rect class="sc-ink f-lilac" x="480" y="196" width="480" height="150"/>
+          <g class="columns">
+            <rect class="sc-ink f-cream" x="496" y="196" width="30" height="150"/>
+            <rect class="sc-ink f-cream" x="588" y="196" width="30" height="150"/>
+            <rect class="sc-ink f-cream" x="822" y="196" width="30" height="150"/>
+            <rect class="sc-ink f-cream" x="914" y="196" width="30" height="150"/>
+          </g>
+          <path class="sc-ink f-dark" d="M676 346 V256 Q 720 220 764 256 V346 Z"/>
+          <rect class="sc-ink f-cream" x="452" y="346" width="536" height="12"/>
+          <rect class="sc-ink f-cream" x="436" y="358" width="568" height="12"/>
+          <rect class="sc-ink f-cream" x="420" y="370" width="600" height="12"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="books">
+          <use class="book b1 f-mustard" href="#sc-book" x="560" y="60" width="44" height="34"/>
+          <use class="book b2 f-mint" href="#sc-book" x="790" y="40" width="44" height="34"/>
+          <use class="book b3 f-clawd" href="#sc-book" x="900" y="96" width="44" height="34"/>
+          <use class="book b4 f-pink" href="#sc-book" x="470" y="110" width="44" height="34"/>
+          <use class="book b5 f-lilac" href="#sc-book" x="680" y="20" width="44" height="34"/>
+        </g>
+
+        <g class="book-stack">
+          <rect class="sc-ink f-pink" x="884" y="352" width="70" height="14" rx="2"/>
+          <rect class="sc-ink f-mint" x="888" y="338" width="64" height="14" rx="2"/>
+          <rect class="sc-ink f-mustard" x="882" y="324" width="68" height="14" rx="2"/>
+        </g>
+        <g class="bob-fast" data-sprite="clawd" data-x="892" data-y="278" data-w="48"></g>
+        <g class="bob" data-sprite="laurinWave" data-x="520" data-y="250" data-w="120"></g>
+      </svg>
+    </figure>
     <span class="walker walker-slow" aria-hidden="true"><span data-sprite="clawd"></span></span>
     <div class="wrap">
       <header class="chapter-head">
@@ -634,6 +974,54 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
   </section>
 
   <section id="superkraefte" class="chapter tone-lilac" aria-labelledby="powers-title">
+    <figure class="scene scene-lab" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="1200" cy="220" r="88"/>
+        <path class="sc-far" d="M0 382 V244 H110 V204 H200 V262 H300 V382 Z M1110 382 V250 H1200 V212 H1300 V266 H1440 V382 Z"/>
+        <use href="#sc-palm" x="120" y="120" width="150" height="300"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-mint" x="470" y="170" width="500" height="212"/>
+          <rect class="sc-ink f-dark" x="456" y="156" width="528" height="20" rx="4"/>
+          <circle class="sc-ink f-glass" cx="600" cy="262" r="56"/>
+          <path class="sc-ink f-none" d="M544 262 H656 M600 206 V318"/>
+          <rect class="sc-ink f-dark" x="760" y="214" width="170" height="44" rx="8"/>
+          <text class="lab-neon" x="845" y="247" font-size="30">LABOR</text>
+          <rect class="sc-ink f-pink" x="770" y="282" width="80" height="100"/>
+        </g>
+
+        <g class="tesla">
+          <rect class="sc-ink f-dark" x="712" y="96" width="10" height="60"/>
+          <circle class="sc-ink f-lilac" cx="717" cy="92" r="16"/>
+          <path class="bolt bolt-a" d="M730 84 L752 70 L744 66 L770 46"/>
+          <path class="bolt bolt-b" d="M704 84 L684 66 L692 62 L666 44"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="lab-table">
+          <rect class="sc-ink f-clawd" x="860" y="330" width="170" height="12"/>
+          <rect class="sc-ink f-clawd" x="872" y="342" width="10" height="40"/><rect class="sc-ink f-clawd" x="1008" y="342" width="10" height="40"/>
+          <path class="sc-ink flask-a" d="M884 330 C 868 330 868 300 884 298 V280 H900 V298 C 916 300 916 330 900 330 Z"/>
+          <path class="sc-ink flask-b" d="M934 330 L948 290 V272 H962 V290 L976 330 Z"/>
+          <path class="sc-ink flask-c" d="M992 330 V288 H1012 V330 Z"/>
+          <g class="bubbles">
+            <circle cx="892" cy="294" r="4"/><circle cx="955" cy="268" r="3.5"/><circle cx="1002" cy="284" r="4"/>
+            <circle cx="896" cy="290" r="3"/><circle cx="958" cy="266" r="3"/>
+          </g>
+        </g>
+        <g class="bob-fast">
+          <g data-sprite="clawd" data-x="810" data-y="330" data-w="52"></g>
+          <path class="sc-ink f-none" d="M812 359 H862"/>
+          <circle class="sc-ink goggle" cx="827" cy="359" r="8"/>
+          <circle class="sc-ink goggle" cx="845" cy="359" r="8"/>
+        </g>
+        <g class="bob" data-sprite="laurinThumbs" data-x="520" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">08 · Superkräfte-Labor</span>
@@ -656,6 +1044,41 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
   </section>
 
   <section id="doktor" class="chapter tone-pink" aria-labelledby="doc-title">
+    <figure class="scene scene-clinic" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="240" cy="214" r="90"/>
+        <path class="sc-far" d="M0 382 V246 H110 V210 H210 V266 H300 V382 Z M1110 382 V240 H1200 V204 H1310 V258 H1440 V382 Z"/>
+        <use href="#sc-palm" x="1190" y="120" width="150" height="300"/>
+
+        <g class="dim">
+          <rect class="sc-ink f-cream" x="470" y="164" width="500" height="218"/>
+          <rect class="sc-ink f-mint" x="456" y="148" width="528" height="24" rx="4"/>
+          <rect class="sc-ink f-dark" x="500" y="196" width="190" height="110" rx="8"/>
+          <path class="ecg" d="M512 256 H556 L566 236 L578 284 L592 216 L604 268 L612 256 H680"/>
+          <text class="sc-pixel ecg-bpm" x="650" y="294" font-size="13">♥ 72</text>
+          <rect class="sc-ink f-mint" x="760" y="232" width="110" height="150"/>
+          <circle class="sc-ink f-mustard" cx="852" cy="310" r="5"/>
+          <rect class="sc-ink f-white" x="890" y="232" width="66" height="74" rx="4"/>
+          <text class="sc-pixel" x="923" y="256" font-size="12">Dr.</text>
+          <text class="sc-pixel" x="923" y="272" font-size="12">Fehler</text>
+          <text class="sc-pixel" x="923" y="292" font-size="9">immer da</text>
+          <path class="sc-ink cross-sign" d="M800 190 h20 v20 h20 v20 h-20 v20 h-20 v-20 h-20 v-20 h20 z"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="bench">
+          <rect class="sc-ink f-clawd" x="880" y="346" width="120" height="12" rx="3"/>
+          <rect class="sc-ink f-dark" x="892" y="358" width="8" height="24"/><rect class="sc-ink f-dark" x="980" y="358" width="8" height="24"/>
+        </g>
+        <g class="bob-fast" data-sprite="clawd" data-x="912" data-y="300" data-w="50"></g>
+        <path class="sc-ink f-white plaster" d="M930 304 h14 v5 h-14 z M934 300 h6 v13 h-6 z"/>
+        <g class="bob" data-sprite="laurinDoc" data-x="560" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap">
       <header class="chapter-head">
         <span class="chapter-sign">09 · Praxis Dr. Fehler</span>
@@ -666,6 +1089,46 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
   </section>
 
   <section id="buddy" class="chapter tone-peach" aria-labelledby="buddy-title">
+    <figure class="scene scene-hangar" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="1210" cy="214" r="92"/>
+        <path class="sc-far" d="M0 382 V254 H110 V216 H200 V270 H300 V382 Z M1110 382 V244 H1200 V206 H1300 V262 H1440 V382 Z"/>
+
+        <g class="dim">
+          <path class="sc-ink f-lilac" d="M470 382 V230 Q 470 120 720 116 Q 970 120 970 230 V382 Z"/>
+          <path class="sc-ink f-none" d="M520 382 V200 M920 382 V200 M560 150 Q 720 136 880 150"/>
+          <path class="sc-ink f-dark" d="M530 382 V262 Q 530 196 720 194 Q 910 196 910 262 V382 Z"/>
+          <rect class="sc-ink f-mustard" x="640" y="132" width="160" height="34" rx="6"/>
+          <text class="sc-pixel" x="720" y="155" font-size="16">HANGAR 10</text>
+        </g>
+
+        <g class="hangar-plane" transform="translate(600 278) scale(1.25)">
+          <path class="sc-ink f-pink" d="M12 20 L34 18 L50 44 L14 44 Z"/>
+          <path class="sc-ink f-pink" d="M8 46 C8 34 26 30 56 30 L120 30 C142 30 152 38 152 48 C152 58 142 64 120 64 L40 64 C20 64 8 56 8 46 Z"/>
+          <path class="f-none" d="M30 50 L148 50" stroke="#f2c14e" stroke-width="5"/>
+          <rect class="sc-ink f-cream" x="94" y="34" width="26" height="13" rx="4"/>
+          <path class="sc-ink f-mustard" d="M56 54 L116 54 L108 76 L52 76 Z"/>
+          <circle class="sc-ink f-cream" cx="153" cy="47" r="6"/>
+          <g class="hangar-prop"><rect class="sc-ink" x="158" y="24" width="5" height="46" rx="2.5" fill="rgba(255,243,220,0.7)"/></g>
+          <circle class="sc-ink f-dark" cx="71" cy="80" r="5"/><circle class="sc-ink f-dark" cx="105" cy="80" r="5"/>
+        </g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="runway" d="M0 430 H1440"/>
+
+        <g class="windsock">
+          <rect class="sc-ink f-dark" x="1004" y="230" width="6" height="152"/>
+          <g class="sock">
+            <path class="sc-ink f-white" d="M1010 232 L1080 240 L1080 256 L1010 264 Z"/>
+            <path class="f-clawd" d="M1024 234 L1038 236 L1038 262 L1024 263 Z M1052 237 L1066 238 L1066 258 L1052 260 Z"/>
+          </g>
+        </g>
+        <g data-sprite="clawd" data-x="736" data-y="290" data-w="36" class="bob-fast"></g>
+        <g class="bob" data-sprite="laurinPilot" data-x="440" data-y="262" data-w="120"></g>
+      </svg>
+    </figure>
     <div class="wrap buddy-grid">
       <header class="chapter-head">
         <span class="chapter-sign">10 · Buddy-Hangar</span>
@@ -703,6 +1166,51 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
   </section>
 
   <section id="starterkit" class="chapter tone-sand" aria-labelledby="kit-title">
+    <figure class="scene scene-kiosk" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <rect width="1440" height="460" fill="url(#sc-sky)"/>
+        <circle class="sc-sun" cx="240" cy="220" r="90"/>
+        <path class="sc-far" d="M0 382 V250 H110 V214 H200 V268 H300 V382 Z M1110 382 V240 H1200 V202 H1300 V258 H1440 V382 Z"/>
+        <use href="#sc-palm" x="1190" y="120" width="150" height="300"/>
+        <path class="bunting-line" d="M380 120 Q 720 190 1060 120"/>
+        <g class="bunting">
+          <path class="sc-ink f-pink" d="M440 138 l24 4 l-14 22 z"/><path class="sc-ink f-mustard" d="M520 156 l24 3 l-14 22 z"/>
+          <path class="sc-ink f-mint" d="M600 168 l24 2 l-13 22 z"/><path class="sc-ink f-lilac" d="M680 174 l24 0 l-12 22 z"/>
+          <path class="sc-ink f-pink" d="M760 172 l24 -2 l-11 22 z"/><path class="sc-ink f-mustard" d="M840 164 l24 -3 l-10 22 z"/>
+          <path class="sc-ink f-mint" d="M920 150 l24 -4 l-9 22 z"/>
+        </g>
+
+        <g class="dim">
+          <rect class="sc-ink f-cream" x="560" y="200" width="320" height="182"/>
+          <rect class="sc-ink f-dark" x="584" y="236" width="272" height="72"/>
+          <rect class="sc-ink f-mustard" x="616" y="160" width="208" height="40" rx="6"/>
+          <text class="sc-text" x="720" y="190" font-size="28">KIOSK</text>
+          <g class="awning">
+            <path class="sc-ink f-pink" d="M548 200 H892 L880 232 H560 Z"/>
+            <path class="f-cream" d="M590 200 H624 L620 232 H588 Z M658 200 H692 L690 232 H656 Z M726 200 H760 L760 232 H726 Z M794 200 H828 L830 232 H796 Z"/>
+          </g>
+          <rect class="sc-ink f-clawd" x="572" y="306" width="296" height="20"/>
+          <g class="mags">
+            <rect class="sc-ink f-pink" x="586" y="330" width="34" height="46"/><rect class="sc-ink f-mint" x="626" y="330" width="34" height="46"/>
+            <rect class="sc-ink f-mustard" x="780" y="330" width="34" height="46"/><rect class="sc-ink f-lilac" x="820" y="330" width="34" height="46"/>
+            <text class="sc-pixel" x="603" y="358" font-size="11">ZIP</text><text class="sc-pixel" x="643" y="358" font-size="11">PDF</text>
+            <text class="sc-pixel" x="797" y="358" font-size="10">.md</text><text class="sc-pixel" x="837" y="358" font-size="9">mcpb</text>
+          </g>
+        </g>
+        <g class="bob-fast" data-sprite="clawd" data-x="694" data-y="256" data-w="52"></g>
+
+        <rect class="sc-walk sc-ink" x="-10" y="380" width="1460" height="22"/>
+        <rect class="sc-street" x="0" y="401" width="1440" height="60"/>
+        <path class="sc-lane" d="M0 432 H1440"/>
+
+        <g class="bob" data-sprite="laurinWave" data-x="440" data-y="262" data-w="120"></g>
+        <g class="kiosk-box">
+          <rect class="sc-ink f-mustard" x="908" y="330" width="56" height="52" rx="4"/>
+          <path class="sc-ink f-pink" d="M908 344 H964 M936 330 V382"/>
+          <path class="sc-ink f-none" d="M936 330 C 926 314 912 320 936 330 C 960 320 946 314 936 330"/>
+        </g>
+      </svg>
+    </figure>
     <span class="walker" aria-hidden="true"><span data-sprite="clawd"></span></span>
     <div class="wrap">
       <header class="chapter-head">

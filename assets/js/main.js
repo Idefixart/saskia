@@ -8,7 +8,7 @@ import { initLibrary, initDoctor } from './library.js';
 import { initLife } from './life.js';
 import { initSoundToggle, play } from './sound.js';
 import { initIntro } from './intro.js';
-import { initScenes } from './scenes.js';
+import { initScenes, sceneReact } from './scenes.js';
 
 mountSprites();
 initTheme();
@@ -36,6 +36,11 @@ document.querySelector('.crew-clawd')?.addEventListener('click', (event) => {
 });
 
 document.querySelector('.car')?.addEventListener('click', () => play('horn'));
+
+// Copying the brief posts a letter into the mailbox of the post office scene.
+document.addEventListener('copied', (event) => {
+  if (event.target.dataset.copyTarget === 'brief-output') sceneReact('.scene-post', 'mail', 1500);
+});
 
 // Printing from the browser: open every diagnosis so the PDF shows all fixes.
 window.addEventListener('beforeprint', () => {
