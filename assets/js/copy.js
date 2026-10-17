@@ -1,4 +1,8 @@
-// Copy buttons: any [data-copy-target] copies the text of the element with that id.
+// Copy buttons: any [data-copy-target] copies the text of the element with that id,
+// then turns green with a check, plings and pops a little confetti.
+import { play } from './sound.js';
+import { burstConfetti } from './life.js';
+
 const RESET_AFTER_MS = 2000;
 
 async function copyText(text) {
@@ -33,9 +37,16 @@ export function initCopy() {
     }
     if (!copied) selectText(target);
     button.textContent = copied ? 'Kopiert!' : 'Markiert, jetzt Strg+C';
+    if (copied) {
+      button.classList.add('is-done');
+      play('pling');
+      burstConfetti(button, { count: 18, spread: 0.25, rise: 0.35 });
+      button.dispatchEvent(new CustomEvent('copied', { bubbles: true }));
+    }
     clearTimeout(button._resetTimer);
     button._resetTimer = setTimeout(() => {
       button.textContent = label;
+      button.classList.remove('is-done');
     }, RESET_AFTER_MS);
   });
 }

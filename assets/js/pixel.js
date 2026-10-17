@@ -61,13 +61,22 @@ export function renderSprite(name, { title = '', className = '' } = {}) {
   return svg;
 }
 
-// Replaces every <span data-sprite="name" data-title="..."> with its SVG.
+// Fills every <span data-sprite="name" data-title="..."> with its SVG. Inside an SVG scene,
+// <g data-sprite="name" data-x data-y data-w> gets a nested <svg> placed in scene units.
 export function mountSprites(root = document) {
   root.querySelectorAll('[data-sprite]').forEach((slot) => {
     const svg = renderSprite(slot.dataset.sprite, {
       title: slot.dataset.title || '',
       className: slot.dataset.class || '',
     });
+    if (slot instanceof SVGElement) {
+      const rows = SPRITES[slot.dataset.sprite].rows;
+      const width = Number(slot.dataset.w);
+      svg.setAttribute('x', slot.dataset.x);
+      svg.setAttribute('y', slot.dataset.y);
+      svg.setAttribute('width', width);
+      svg.setAttribute('height', (width * rows.length) / rows[0].length);
+    }
     slot.replaceChildren(svg);
   });
 }

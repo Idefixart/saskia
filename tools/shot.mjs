@@ -17,6 +17,7 @@ const browser = await chromium.launch();
 try {
   for (const width of widths) {
     const ctx = await browser.newContext({ viewport: { width, height: width < 800 ? 812 : 900 }, deviceScaleFactor: 2 });
+    if (!flags.includes('--intro')) await ctx.addInitScript(() => { try { localStorage.setItem('opened', '1'); } catch {} });
     const tab = await ctx.newPage();
     tab.on('pageerror', (e) => console.error('pageerror:', e.message));
     tab.on('console', (m) => m.type() === 'error' && console.error('console:', m.text()));

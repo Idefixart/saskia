@@ -22,7 +22,10 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/world.css">
 <link rel="stylesheet" href="assets/css/chapters.css">
+<link rel="stylesheet" href="assets/css/scenes.css">
+<link rel="stylesheet" href="assets/css/buttons.css">
 <link rel="stylesheet" href="assets/css/life.css">
+<link rel="stylesheet" href="assets/css/intro.css">
 <link rel="stylesheet" href="assets/css/print.css" media="print">
 <script type="module" src="assets/js/main.js"></script>
 </head>
@@ -30,15 +33,52 @@
 <a class="skip" href="#post">Zum Inhalt springen</a>
 <div class="grain" aria-hidden="true"></div>
 
+<div id="gift" class="gift" role="dialog" aria-modal="true" aria-labelledby="gift-title" tabindex="-1" hidden>
+  <div class="gift-rays" aria-hidden="true"></div>
+  <div class="gift-stage">
+    <h2 id="gift-title" class="gift-title">Da ist was für dich.</h2>
+    <button class="gift-open" type="button">
+      <span class="visually-hidden">Geschenk öffnen</span>
+      <span class="gift-peek" data-sprite="clawd"></span>
+      <svg class="gift-art" viewBox="0 0 320 300" aria-hidden="true">
+        <ellipse class="gift-shadow" cx="160" cy="284" rx="124" ry="12"/>
+        <g class="gift-box">
+          <rect class="gift-body" x="50" y="122" width="220" height="158" rx="8"/>
+          <g class="gift-dots"><circle cx="86" cy="160" r="7"/><circle cx="118" cy="214" r="7"/><circle cx="82" cy="246" r="7"/><circle cx="214" cy="160" r="7"/><circle cx="238" cy="226" r="7"/><circle cx="204" cy="252" r="7"/></g>
+          <rect class="gift-ribbon" x="145" y="122" width="30" height="158"/>
+        </g>
+        <g class="gift-lid">
+          <rect class="gift-lid-body" x="36" y="90" width="248" height="42" rx="8"/>
+          <rect class="gift-ribbon" x="145" y="90" width="30" height="42"/>
+          <path class="gift-tail" d="M156 82 L132 112 L146 112 Z"/>
+          <path class="gift-tail" d="M164 82 L188 112 L174 112 Z"/>
+          <ellipse class="gift-loop" cx="128" cy="64" rx="36" ry="20" transform="rotate(-18 128 64)"/>
+          <ellipse class="gift-loop" cx="192" cy="64" rx="36" ry="20" transform="rotate(18 192 64)"/>
+          <rect class="gift-knot" x="146" y="66" width="28" height="24" rx="7"/>
+        </g>
+      </svg>
+      <span class="gift-tag" aria-hidden="true"><b>Für Saskia</b><span>von Laurin · 17.10.</span></span>
+    </button>
+    <p class="bubble gift-bubble">Psst, Saskia … tipp das Geschenk an!</p>
+    <button class="gift-skip" type="button">Überspringen</button>
+  </div>
+</div>
+
 <header class="topbar">
   <a class="brand" href="#hallo">
     <span class="brand-clawd" data-sprite="clawd"></span>
     <span>Saskias Claude-Welt</span>
   </a>
-  <button class="theme-toggle" type="button">
-    <span class="theme-toggle-knob" aria-hidden="true"></span>
-    <span class="theme-toggle-label">Nacht</span><span class="visually-hidden"> einschalten</span>
-  </button>
+  <div class="topbar-tools">
+    <button class="sound-toggle" type="button" aria-pressed="false">
+      <svg class="sound-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path class="sound-body" d="M2 6h3l4-3v10l-4-3H2z"/><path class="sound-on" d="M11 5h1v1h1v4h-1v1h-1v-1h1V6h-1z"/><path class="sound-off" d="M11 6h1v1h1V6h1v1h-1v1h1v1h-1v-1h-1v1h-1v-1h1V7h-1z"/></svg>
+      <span class="visually-hidden">Ton</span>
+    </button>
+    <button class="theme-toggle" type="button">
+      <span class="theme-toggle-knob" aria-hidden="true"></span>
+      <span class="theme-toggle-label">Nacht</span><span class="visually-hidden"> einschalten</span>
+    </button>
+  </div>
 </header>
 
 <main>
@@ -95,24 +135,24 @@
         </pattern>
       </defs>
       <g class="city-far">
-        <rect x="0" y="190" width="120" height="130"/>
-        <rect x="110" y="150" width="70" height="170"/>
-        <rect x="300" y="170" width="90" height="150"/>
-        <rect x="470" y="130" width="80" height="190"/>
-        <rect x="980" y="150" width="90" height="170"/>
-        <rect x="1130" y="180" width="120" height="140"/>
-        <rect x="1300" y="140" width="80" height="180"/>
+        <rect style="--i:0" x="0" y="190" width="120" height="130"/>
+        <rect style="--i:1" x="110" y="150" width="70" height="170"/>
+        <rect style="--i:2" x="300" y="170" width="90" height="150"/>
+        <rect style="--i:3" x="470" y="130" width="80" height="190"/>
+        <rect style="--i:4" x="980" y="150" width="90" height="170"/>
+        <rect style="--i:5" x="1130" y="180" width="120" height="140"/>
+        <rect style="--i:6" x="1300" y="140" width="80" height="180"/>
       </g>
       <g class="city-near">
-        <path d="M170 320 V200 H260 V320 Z"/>
-        <path d="M380 320 V150 Q 380 120 420 116 H460 V320 Z"/>
-        <path d="M560 320 V96 H640 V320 Z"/>
-        <path d="M640 320 V170 H720 V320 Z"/>
-        <path d="M770 320 V58 Q 770 40 790 36 L842 30 Q 862 30 862 48 V320 Z"/>
-        <path d="M790 36 V18 H840 V30"/>
-        <path d="M880 320 V120 L960 90 V320 Z"/>
-        <path d="M1060 320 V190 H1150 V320 Z"/>
-        <path d="M1240 320 V160 H1300 V320 Z"/>
+        <path style="--i:2" d="M170 320 V200 H260 V320 Z"/>
+        <path style="--i:3" d="M380 320 V150 Q 380 120 420 116 H460 V320 Z"/>
+        <path style="--i:4" d="M560 320 V96 H640 V320 Z"/>
+        <path style="--i:5" d="M640 320 V170 H720 V320 Z"/>
+        <path style="--i:6" d="M770 320 V58 Q 770 40 790 36 L842 30 Q 862 30 862 48 V320 Z"/>
+        <path style="--i:7" d="M790 36 V18 H840 V30"/>
+        <path style="--i:8" d="M880 320 V120 L960 90 V320 Z"/>
+        <path style="--i:9" d="M1060 320 V190 H1150 V320 Z"/>
+        <path style="--i:10" d="M1240 320 V160 H1300 V320 Z"/>
       </g>
       <g class="city-windows" fill="url(#windows)">
         <path d="M170 320 V200 H260 V320 Z"/>
@@ -311,6 +351,98 @@
   </section>
 
   <section id="sos" class="chapter tone-night sos" aria-labelledby="sos-title">
+    <figure class="scene scene-er" aria-hidden="true">
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <pattern id="er-windows" width="46" height="40" patternUnits="userSpaceOnUse" x="440" y="150">
+            <rect x="8" y="8" width="28" height="22" rx="3" class="er-win"/>
+          </pattern>
+          <radialGradient id="er-lamp-glow" cx="50%" cy="0%" r="100%">
+            <stop offset="0%" stop-color="#ffe9ae" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#ffe9ae" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="er-door-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#bfe3f5" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#bfe3f5" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <g class="er-stars">
+          <circle cx="90" cy="60" r="2"/><circle cx="260" cy="110" r="1.5"/><circle cx="350" cy="40" r="2"/>
+          <circle cx="1100" cy="50" r="2"/><circle cx="1190" cy="130" r="1.5"/><circle cx="1360" cy="90" r="2"/>
+        </g>
+        <path class="er-moon" d="M1262 52 a36 36 0 1 0 34 52 a28 28 0 1 1 -34 -52 z"/>
+
+        <path class="er-far" d="M0 300 V230 H70 V260 H120 V200 H200 V250 H260 V180 H330 V300 Z M1110 300 V210 H1180 V170 H1250 V240 H1320 V190 H1400 V250 H1440 V300 Z"/>
+
+        <g class="palm-mini" transform="translate(150 140)">
+          <path class="pm-trunk" d="M20 240 C 26 160 34 90 30 10"/>
+          <path class="pm-leaf" d="M30 10 C 60 -20 110 -6 130 30 C 96 10 64 12 30 18 Z"/>
+          <path class="pm-leaf" d="M30 10 C 0 -24 -50 -14 -70 22 C -36 4 -4 6 30 18 Z"/>
+          <path class="pm-leaf" d="M30 12 C 50 30 64 70 60 110 C 50 76 40 50 26 22 Z"/>
+          <path class="pm-leaf" d="M30 12 C 10 34 -8 70 -4 108 C 8 74 18 50 34 22 Z"/>
+          <path class="pm-leaf" d="M30 10 C 70 0 112 26 118 66 C 94 34 66 22 30 18 Z"/>
+          <path class="pm-leaf" d="M30 10 C -10 0 -52 26 -58 66 C -34 34 -6 22 30 18 Z"/>
+        </g>
+
+        <g class="er-building">
+          <rect class="er-facade" x="430" y="120" width="600" height="262"/>
+          <rect class="er-facade-shade" x="430" y="120" width="600" height="20"/>
+          <rect x="440" y="150" width="580" height="80" fill="url(#er-windows)"/>
+          <g class="er-dark-windows"><rect x="494" y="158" width="28" height="22" rx="3"/><rect x="678" y="198" width="28" height="22" rx="3"/><rect x="862" y="158" width="28" height="22" rx="3"/><rect x="954" y="198" width="28" height="22" rx="3"/></g>
+          <rect class="er-win-blink" x="770" y="158" width="28" height="22" rx="3"/>
+          <rect class="er-roof" x="410" y="104" width="640" height="22" rx="4"/>
+        </g>
+
+        <g class="er-sign">
+          <rect class="er-sign-board" x="560" y="40" width="360" height="56" rx="10"/>
+          <g class="er-cross">
+            <rect class="er-cross-box" x="574" y="48" width="40" height="40" rx="8"/>
+            <path class="er-cross-plus" d="M589 54 h10 v11 h11 v10 h-11 v11 h-10 v-11 h-11 v-10 h11 z"/>
+          </g>
+          <text class="er-neon" x="628" y="80">NOTAUFNAHME</text>
+        </g>
+
+        <g class="er-entrance" transform="translate(-40 0)">
+          <rect class="er-door-glow" x="560" y="300" width="300" height="120" fill="url(#er-door-glow)"/>
+          <rect class="er-door" x="620" y="262" width="80" height="120"/>
+          <rect class="er-door" x="700" y="262" width="80" height="120"/>
+          <path class="er-door-shine" d="M634 276 l20 -0 l-30 60 h-10 z M714 276 l20 0 l-30 60 h-10 z"/>
+          <path class="er-canopy" d="M590 244 H810 L826 266 H574 Z"/>
+          <text class="er-247" x="700" y="260">24/7</text>
+        </g>
+
+        <rect class="er-sidewalk" x="0" y="380" width="1440" height="22"/>
+        <rect class="er-street" x="0" y="400" width="1440" height="60"/>
+        <path class="er-lane" d="M0 432 H1440"/>
+
+        <g class="er-lamp">
+          <path class="er-lamp-cone" d="M432 186 L360 384 H520 Z" fill="url(#er-lamp-glow)"/>
+          <rect class="er-pole" x="428" y="180" width="8" height="202"/>
+          <path class="er-lamp-head" d="M412 172 H452 L444 188 H420 Z"/>
+        </g>
+
+        <g class="er-laurin" data-sprite="laurinDoc" data-x="452" data-y="264" data-w="120"></g>
+
+        <g class="er-ambulance" transform="translate(-70 0)">
+          <rect class="er-amb-body" x="842" y="300" width="166" height="92" rx="8"/>
+          <path class="er-amb-cab" d="M1008 324 H1062 C1078 324 1088 340 1092 360 L1094 392 H1008 Z"/>
+          <path class="er-amb-glass" d="M1016 332 H1058 C1068 332 1074 342 1078 360 H1016 Z"/>
+          <rect class="er-amb-stripe" x="842" y="356" width="252" height="10"/>
+          <path class="er-amb-cross" d="M903 316 h14 v14 h14 v14 h-14 v14 h-14 v-14 h-14 v-14 h14 z"/>
+          <g class="er-lights">
+            <rect class="er-light er-light-red" x="900" y="286" width="26" height="14" rx="4"/>
+            <rect class="er-light er-light-blue" x="928" y="286" width="26" height="14" rx="4"/>
+          </g>
+          <circle class="er-wheel" cx="880" cy="394" r="17"/>
+          <circle class="er-wheel" cx="1048" cy="394" r="17"/>
+          <circle class="er-hub" cx="880" cy="394" r="6"/>
+          <circle class="er-hub" cx="1048" cy="394" r="6"/>
+          <g class="er-driver" data-sprite="clawd" data-x="1022" data-y="326" data-w="38"></g>
+        </g>
+        <ellipse class="er-alarm-glow" cx="860" cy="290" rx="220" ry="120"/>
+      </svg>
+    </figure>
     <div class="wrap sos-grid">
       <header class="chapter-head">
         <span class="chapter-sign sign-pinkbg">02 · Notaufnahme</span>
@@ -628,6 +760,7 @@ Zeig mir erst den Plan: welche Dateien, welche Einstellungen. Dann warte.</pre>
     </div>
     <p class="footer-big">Bis später in Claude-Town.</p>
     <p>Ein Fan-Geschenk von Laurin. Nicht von Anthropic.</p>
+    <button class="btn btn--pink replay" type="button">Nochmal auspacken</button>
     <p class="footer-small">Gebaut am 17.10.2026, natürlich mit Claude. <a href="#hallo">Nach oben</a></p>
   </div>
 </footer>

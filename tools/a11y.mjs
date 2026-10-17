@@ -16,7 +16,7 @@ try {
   for (const theme of ['day', 'night']) {
     for (const width of [375, 1440]) {
       const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
-      await page.addInitScript((t) => localStorage.setItem('theme', t), theme);
+      await page.addInitScript((t) => { localStorage.setItem('theme', t); localStorage.setItem('opened', '1'); }, theme);
       await page.goto(url, { waitUntil: 'networkidle' });
       await page.addScriptTag({ content: axeSource });
       const result = await page.evaluate(() => window.axe.run(document, { resultTypes: ['violations'] }));

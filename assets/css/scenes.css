@@ -1,0 +1,321 @@
+/* World scenes at the top of each chapter. Animations run only while .is-live (see scenes.js). */
+
+.chapter:has(> .scene) {
+  padding-top: 0;
+}
+
+.scene {
+  position: relative;
+  margin: 0 0 clamp(1.5rem, 1rem + 2vw, 3rem);
+  height: clamp(250px, 34vw, 460px);
+  overflow: hidden;
+}
+
+.scene > svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.scene:not(.is-live) *,
+.scene:not(.is-live) *::before,
+.scene:not(.is-live) *::after {
+  animation-play-state: paused !important;
+}
+
+/* ---------- Notaufnahme (always night) ---------- */
+.scene-er {
+  --er-ink: #170d1c;
+}
+
+.scene-er .er-stars circle {
+  fill: #fff7e0;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+.scene-er .er-stars circle:nth-child(even) {
+  animation-delay: -1.5s;
+}
+
+.scene-er .er-moon {
+  fill: #fff1cf;
+}
+
+.scene-er .er-far {
+  fill: #3a2148;
+}
+
+.palm-mini .pm-trunk {
+  fill: none;
+  stroke: #4a2a4c;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.palm-mini .pm-leaf {
+  fill: #2f5a52;
+  stroke: var(--er-ink, #3a1f35);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.palm-mini {
+  animation: sway-mini 5s var(--ease-soft) infinite alternate;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+@keyframes sway-mini {
+  to {
+    rotate: 2.5deg;
+  }
+}
+
+.scene-er .er-facade {
+  fill: #5e3d66;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+}
+
+.scene-er .er-facade-shade {
+  fill: #4c2f55;
+}
+
+.scene-er .er-roof {
+  fill: #3a2148;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+}
+
+.scene-er .er-win {
+  fill: #ffd36b;
+  opacity: 0.85;
+}
+
+.scene-er .er-sign-board {
+  fill: #2a1530;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+}
+
+.scene-er .er-cross-box {
+  fill: #3b1427;
+  stroke: #ff4d6d;
+  stroke-width: 2;
+}
+
+.scene-er .er-cross-plus {
+  fill: #ff4d6d;
+  filter: drop-shadow(0 0 6px #ff4d6d);
+}
+
+.scene-er .er-cross {
+  animation: neon-blink 2.6s steps(1, end) infinite;
+}
+
+@keyframes neon-blink {
+  0%, 100% { opacity: 1; }
+  48% { opacity: 1; }
+  50% { opacity: 0.25; }
+  54% { opacity: 1; }
+  56% { opacity: 0.4; }
+  58% { opacity: 1; }
+}
+
+.scene-er .er-neon {
+  fill: #ff9ab4;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 36px;
+  letter-spacing: 2px;
+  filter: drop-shadow(0 0 4px #ff6f95) drop-shadow(0 0 14px rgba(255, 111, 149, 0.7));
+  animation: neon-hum 4s steps(1, end) infinite;
+}
+
+@keyframes neon-hum {
+  0%, 100% { opacity: 1; }
+  71% { opacity: 1; }
+  72% { opacity: 0.6; }
+  73% { opacity: 1; }
+}
+
+.scene-er .er-door {
+  fill: #bfe3f5;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+}
+
+.scene-er .er-door-shine {
+  fill: rgba(255, 255, 255, 0.55);
+}
+
+.scene-er .er-canopy {
+  fill: var(--mustard);
+  stroke: var(--er-ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.scene-er .er-247 {
+  fill: #3a1f35;
+  font-family: var(--font-pixel);
+  font-size: 15px;
+  text-anchor: middle;
+}
+
+.scene-er .er-sidewalk {
+  fill: #4a2f52;
+}
+
+.scene-er .er-street {
+  fill: #34233f;
+}
+
+.scene-er .er-lane {
+  stroke: var(--mustard);
+  stroke-width: 4;
+  stroke-dasharray: 34 22;
+  opacity: 0.8;
+}
+
+.scene-er .er-pole {
+  fill: #22122a;
+}
+
+.scene-er .er-lamp-head {
+  fill: #ffe9ae;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+}
+
+.scene-er .er-lamp-cone {
+  animation: lamp-flicker 6s steps(1, end) infinite;
+}
+
+@keyframes lamp-flicker {
+  0%, 100% { opacity: 1; }
+  33% { opacity: 0.75; }
+  34% { opacity: 1; }
+  80% { opacity: 0.85; }
+}
+
+.scene-er .er-laurin {
+  animation: idle-bob 1.2s steps(2, jump-none) infinite;
+}
+
+.scene-er .er-amb-body,
+.scene-er .er-amb-cab {
+  fill: #f3efe6;
+  stroke: var(--er-ink);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.scene-er .er-amb-glass {
+  fill: #bfe3f5;
+  stroke: var(--er-ink);
+  stroke-width: 2.5;
+}
+
+.scene-er .er-amb-stripe {
+  fill: var(--pink);
+}
+
+.scene-er .er-amb-cross {
+  fill: #e0344f;
+  stroke: var(--er-ink);
+  stroke-width: 2;
+}
+
+.scene-er .er-light {
+  stroke: var(--er-ink);
+  stroke-width: 2.5;
+}
+
+.scene-er .er-light-red {
+  fill: #ff4d6d;
+  animation: light-a 0.9s steps(1, end) infinite;
+}
+
+.scene-er .er-light-blue {
+  fill: #5ab0ff;
+  animation: light-b 0.9s steps(1, end) infinite;
+}
+
+@keyframes light-a {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 10px #ff4d6d); }
+  50% { opacity: 0.35; filter: none; }
+}
+
+@keyframes light-b {
+  0%, 100% { opacity: 0.35; filter: none; }
+  50% { opacity: 1; filter: drop-shadow(0 0 10px #5ab0ff); }
+}
+
+.scene-er .er-wheel {
+  fill: var(--er-ink);
+}
+
+.scene-er .er-hub {
+  fill: #b9b1a6;
+}
+
+.scene-er .er-alarm-glow {
+  fill: #ff4d6d;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SOS pressed: lights go wild, the street glows red, the ambulance trembles. */
+.scene-er.alarm .er-light-red,
+.scene-er.alarm .er-light-blue {
+  animation-duration: 0.22s;
+}
+
+.scene-er.alarm .er-alarm-glow {
+  animation: alarm-glow 0.44s ease-in-out infinite alternate;
+}
+
+@keyframes alarm-glow {
+  to {
+    opacity: 0.32;
+  }
+}
+
+.scene-er.alarm .er-ambulance {
+  animation: tremble 0.12s linear infinite;
+}
+
+@keyframes tremble {
+  50% {
+    translate: 1px -1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene * {
+    animation: none !important;
+  }
+}
+
+.scene-er .er-dark-windows rect {
+  fill: #3a2148;
+}
+
+.scene-er .er-win-blink {
+  fill: #ffd36b;
+  animation: win-blink 5s steps(1, end) infinite;
+}
+
+@keyframes win-blink {
+  0%, 100% { fill: #ffd36b; }
+  45% { fill: #3a2148; }
+  70% { fill: #ffd36b; }
+}
+
+@media (max-width: 640px) {
+  .scene {
+    height: 290px;
+  }
+}

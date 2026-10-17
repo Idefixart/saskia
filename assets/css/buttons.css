@@ -1,0 +1,269 @@
+/* Arcade keys: chunky 3D buttons with a darker lip, a pixel highlight and a real press.
+   Loaded after chapters.css so it owns every button style. */
+
+.btn,
+.filter,
+.chip span,
+.sos-again,
+.gift-skip {
+  --key: var(--mustard);
+  --key-edge: #c08a22;
+  --key-ink: #3a1f35;
+  --lip: 6px;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 52px;
+  padding: 0.65rem 1.25rem calc(0.65rem + var(--lip));
+  background: var(--key);
+  color: var(--key-ink);
+  border: var(--stroke) solid var(--key-ink);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 calc(-1 * var(--lip)) 0 var(--key-edge),
+    inset 4px 4px 0 rgba(255, 255, 255, 0.45),
+    4px 6px 0 var(--hard);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 85%;
+  font-size: 1rem;
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 90ms var(--ease-soft),
+    box-shadow 90ms var(--ease-soft),
+    filter var(--dur-fast);
+}
+
+/* Pixel glint in the top-left corner. */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 8px 0 0 rgba(255, 255, 255, 0.5), 0 8px 0 rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.15) brightness(1.04);
+  box-shadow:
+    inset 0 calc(-1 * var(--lip)) 0 var(--key-edge),
+    inset 4px 4px 0 rgba(255, 255, 255, 0.5),
+    5px 9px 0 var(--hard);
+}
+
+.btn:active,
+.btn.is-pressed {
+  transform: translateY(5px);
+  box-shadow:
+    inset 0 -2px 0 var(--key-edge),
+    inset 4px 4px 0 rgba(255, 255, 255, 0.3),
+    1px 1px 0 var(--hard);
+}
+
+.btn:focus-visible {
+  outline: 4px solid var(--pink);
+  outline-offset: 4px;
+}
+
+.btn--pink {
+  --key: var(--pink);
+  --key-edge: #b9476a;
+}
+
+.btn--mint {
+  --key: var(--mint);
+  --key-edge: #4f9d7c;
+}
+
+.btn--ghost {
+  --key: var(--cream);
+  --key-edge: #d8bf98;
+}
+
+/* ---------- copy buttons: clipboard icon, check when done ---------- */
+.btn[data-copy-target]::before {
+  content: '';
+  flex: none;
+  width: 16px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h4v1h2v8H0V1h2zM1 2v6h6V2H6v1H2V2zm2-1v1h2V1z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 9' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h4v1h2v8H0V1h2zM1 2v6h6V2H6v1H2V2zm2-1v1h2V1z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.btn[data-copy-target].is-done {
+  --key: #7fd6a8;
+  --key-edge: #3f9b6b;
+}
+
+.btn[data-copy-target].is-done::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M7 1h1v2H7v1H6v1H5v1H4v1H3V6H2V5H1V4H0V3h2v1h1v1h1V4h1V3h1V2h1z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M7 1h1v2H7v1H6v1H5v1H4v1H3V6H2V5H1V4H0V3h2v1h1v1h1V4h1V3h1V2h1z'/%3E%3C/svg%3E");
+}
+
+.copybox .btn {
+  min-height: 46px;
+  --lip: 5px;
+  padding: 0.45rem 1rem calc(0.45rem + var(--lip));
+  font-size: 0.92rem;
+}
+
+/* ---------- small keys: filters and form chips ---------- */
+.filter,
+.chip span {
+  --key: var(--surface);
+  --key-edge: color-mix(in srgb, var(--surface) 70%, #3a1f35);
+  --lip: 4px;
+  min-height: 44px;
+  padding: 0.35rem 0.95rem calc(0.35rem + var(--lip));
+  background: var(--key);
+  color: var(--text);
+  border: 2.5px solid var(--line);
+  border-radius: 11px;
+  box-shadow: inset 0 calc(-1 * var(--lip)) 0 var(--key-edge), 2px 3px 0 var(--hard);
+  font-weight: 700;
+  transition: transform 90ms var(--ease-soft), box-shadow 90ms var(--ease-soft), background-color var(--dur-fast);
+}
+
+.filter:hover,
+.chip:hover span {
+  transform: translateY(-1px);
+}
+
+.filter[aria-pressed='true'],
+.chip input:checked + span {
+  --key: var(--clawd);
+  --key-edge: #a6533a;
+  color: #fff7ea;
+  transform: translateY(3px);
+  box-shadow: inset 0 -1px 0 var(--key-edge), 0 0 0 var(--hard);
+}
+
+.chip input:checked + span {
+  --key: var(--mustard);
+  --key-edge: #c08a22;
+  color: #3a1f35;
+}
+
+/* ---------- the SOS buzzer: housing, bolts and a deep cap ---------- */
+.sos-button {
+  position: relative;
+  width: clamp(220px, 62vw, 290px);
+  aspect-ratio: 1;
+  padding: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.25) 59% 61%, transparent 62%),
+    linear-gradient(160deg, #54364f, #2a1528);
+  border: var(--stroke) solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 12px 0 #0d0610, 0 0 60px rgba(236, 111, 142, 0.45);
+  cursor: pointer;
+}
+
+.sos-button::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #f7e7c9 0 3px, transparent 4px) 50% 0 / 12px 12px no-repeat,
+    radial-gradient(circle, #f7e7c9 0 3px, transparent 4px) 50% 100% / 12px 12px no-repeat,
+    radial-gradient(circle, #f7e7c9 0 3px, transparent 4px) 0 50% / 12px 12px no-repeat,
+    radial-gradient(circle, #f7e7c9 0 3px, transparent 4px) 100% 50% / 12px 12px no-repeat;
+  opacity: 0.8;
+}
+
+.sos-button-cap {
+  inset: 13% 13% 19%;
+  background: radial-gradient(circle at 34% 28%, #ffd0dc 0 8%, #ff8eab 22%, var(--pink) 48%, #b8365c 100%);
+  box-shadow: 0 10px 0 #7d1f3b, inset 0 -6px 0 rgba(125, 31, 59, 0.5);
+  transition: transform 90ms var(--ease-soft), box-shadow 90ms var(--ease-soft);
+}
+
+.sos-button:hover .sos-button-cap {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 0 #7d1f3b, inset 0 -6px 0 rgba(125, 31, 59, 0.5);
+}
+
+.sos-button:active .sos-button-cap {
+  transform: translateY(9px);
+  box-shadow: 0 1px 0 #7d1f3b, inset 0 -2px 0 rgba(125, 31, 59, 0.5);
+}
+
+/* ---------- topbar toggles ---------- */
+.topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.sound-toggle {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: var(--cream);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 50%;
+  box-shadow: var(--shadow-hard-s);
+  cursor: pointer;
+}
+
+.sound-icon {
+  width: 22px;
+  fill: currentColor;
+}
+
+.sound-toggle .sound-on {
+  display: none;
+}
+
+.sound-toggle[aria-pressed='true'] {
+  background: var(--mint);
+}
+
+.sound-toggle[aria-pressed='true'] .sound-on {
+  display: inline;
+}
+
+.sound-toggle[aria-pressed='true'] .sound-off {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    padding-right: 0.35rem;
+  }
+
+  .theme-toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .filter,
+  .chip span {
+    transition: none;
+  }
+}

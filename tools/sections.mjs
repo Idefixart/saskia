@@ -17,6 +17,7 @@ const { url, close } = await serve(root);
 const browser = await chromium.launch();
 try {
   const ctx = await browser.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
+  if (!args.includes('--intro')) await ctx.addInitScript(() => { try { localStorage.setItem('opened', '1'); } catch {} });
   const tab = await ctx.newPage();
   tab.on('pageerror', (e) => console.error('pageerror:', e.message));
   await tab.goto(url, { waitUntil: 'networkidle' });

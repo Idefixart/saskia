@@ -1,6 +1,10 @@
 // Anschrei-Notfallknopf: shows a random calming tip (never the same twice in a row)
 // plus the reset prompt to copy.
 import { SOS_TIPS, RESET_PROMPT } from './data/sos-tips.js';
+import { play } from './sound.js';
+import { sceneReact } from './scenes.js';
+
+const ALARM_MS = 3200;
 
 export function initSos() {
   const button = document.querySelector('.sos-button');
@@ -24,6 +28,10 @@ export function initSos() {
     clawd.classList.add('shake');
   };
 
-  button.addEventListener('click', showTip);
+  button.addEventListener('click', () => {
+    showTip();
+    play('siren');
+    sceneReact('.scene-er', 'alarm', ALARM_MS);
+  });
   result.querySelector('.sos-again').addEventListener('click', showTip);
 }

@@ -1,0 +1,460 @@
+/* First-open wow: the gift dialog, its burst, and the hero building itself up (.hero.build). */
+
+.intro-open {
+  overflow: hidden;
+}
+
+.gift {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 62%, var(--sky-low) 0%, var(--sky-mid) 38%, var(--sky-top) 78%);
+}
+
+.gift[hidden] {
+  display: none;
+}
+
+.gift-rays {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 260vmax;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 243, 220, 0.38) 0deg 9deg, transparent 9deg 22deg);
+  -webkit-mask: radial-gradient(circle, #000 0 18%, transparent 46%);
+  mask: radial-gradient(circle, #000 0 18%, transparent 46%);
+  animation: rays-spin 40s linear infinite;
+}
+
+@keyframes rays-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.gift-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.gift-title {
+  font-size: clamp(2.2rem, 1.4rem + 4vw, 4.4rem);
+  font-stretch: 75%;
+  text-transform: uppercase;
+  color: var(--cream);
+  -webkit-text-stroke: 2px #3a1f35;
+  paint-order: stroke fill;
+  text-shadow: 0 5px 0 #3a1f35;
+  animation: title-in 0.9s var(--ease-out-expo) both;
+}
+
+@keyframes title-in {
+  from {
+    transform: translateY(-40px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.gift-open {
+  position: relative;
+  width: min(78vw, 360px);
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  animation: gift-drop 0.9s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) both, gift-wobble 2.4s 1.2s ease-in-out infinite;
+}
+
+.gift-open:focus-visible {
+  outline: 4px dashed var(--cream);
+  outline-offset: 12px;
+  border-radius: 24px;
+}
+
+@keyframes gift-drop {
+  from {
+    transform: translateY(-70vh) rotate(-8deg);
+  }
+}
+
+@keyframes gift-wobble {
+  0%, 70%, 100% { rotate: 0deg; }
+  76% { rotate: -4deg; }
+  82% { rotate: 4deg; }
+  88% { rotate: -2deg; }
+  94% { rotate: 1deg; }
+}
+
+.gift-art {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: visible;
+  stroke: #3a1f35;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+.gift-shadow {
+  fill: rgba(58, 31, 53, 0.3);
+  stroke: none;
+}
+
+.gift-body {
+  fill: var(--pink);
+}
+
+.gift-lid-body {
+  fill: #e0577c;
+}
+
+.gift-dots circle {
+  fill: var(--cream);
+  stroke-width: 3;
+}
+
+.gift-ribbon,
+.gift-loop,
+.gift-knot,
+.gift-tail {
+  fill: var(--mustard);
+}
+
+.gift-lid {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.gift-peek {
+  position: absolute;
+  z-index: 0;
+  right: 4%;
+  top: 34%;
+  width: 22%;
+  animation: peek 3.2s 1.4s ease-in-out infinite;
+}
+
+@keyframes peek {
+  0%, 100% { transform: translate(0, 40%) rotate(8deg); }
+  30%, 70% { transform: translate(45%, -10%) rotate(14deg); }
+}
+
+.gift-tag {
+  position: absolute;
+  z-index: 2;
+  left: -6%;
+  top: 46%;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.45rem 0.7rem 0.5rem 1.1rem;
+  background: var(--cream);
+  color: #3a1f35;
+  border: 3px solid #3a1f35;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 3px 4px 0 #3a1f35;
+  font-family: var(--font-pixel);
+  font-size: clamp(0.72rem, 0.65rem + 0.4vw, 0.92rem);
+  line-height: 1.2;
+  text-align: left;
+  rotate: -9deg;
+}
+
+.gift-tag::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  translate: 0 -50%;
+  border: 2px solid #3a1f35;
+  border-radius: 50%;
+}
+
+.gift-tag b {
+  font-weight: 700;
+  color: #c4385f;
+}
+
+.gift-bubble {
+  max-width: 18rem;
+  animation: title-in 0.8s 0.9s var(--ease-out-expo) both;
+}
+
+.gift-skip {
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  background: none;
+  border: 0;
+  color: #3a1f35;
+  font-family: var(--font-pixel);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+/* ---------- the burst ---------- */
+.gift.is-opening .gift-open {
+  animation: gift-shake 0.5s linear both;
+  cursor: default;
+}
+
+@keyframes gift-shake {
+  15% { transform: translate(-6px, 2px) rotate(-5deg); }
+  30% { transform: translate(7px, -2px) rotate(6deg); }
+  45% { transform: translate(-8px, 0) rotate(-6deg) scale(1.04); }
+  60% { transform: translate(8px, -3px) rotate(5deg) scale(1.06); }
+  80% { transform: translate(-4px, 0) rotate(-2deg) scale(1.08); }
+  100% { transform: scale(1.1); }
+}
+
+.gift.is-opening .gift-lid {
+  animation: lid-fly 0.9s 0.45s cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+}
+
+@keyframes lid-fly {
+  to {
+    transform: translate(-40px, -120vh) rotate(-38deg);
+  }
+}
+
+.gift.is-opening .gift-peek {
+  animation: peek-jump 0.8s 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes peek-jump {
+  to {
+    transform: translate(-150%, -150%) scale(1.6) rotate(-10deg);
+  }
+}
+
+.gift.is-opening .gift-rays {
+  animation: rays-spin 40s linear infinite, rays-burst 1.2s 0.4s ease-out forwards;
+}
+
+@keyframes rays-burst {
+  to {
+    scale: 2.4;
+    opacity: 0.2;
+  }
+}
+
+.gift::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff7e6;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gift.is-opening::after {
+  animation: flash 0.9s 0.5s ease-out forwards;
+}
+
+@keyframes flash {
+  20% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+.gift.is-opening .gift-title,
+.gift.is-opening .gift-bubble,
+.gift.is-opening .gift-skip,
+.gift.is-opening .gift-tag {
+  animation: fade-away 0.3s ease-out forwards;
+}
+
+.gift.is-leaving {
+  animation: fade-away 0.6s ease-in forwards;
+}
+
+@keyframes fade-away {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- the city builds itself (.hero.build) ---------- */
+.intro-open .flight-inner {
+  animation: none;
+  transform: translateX(-130vw);
+}
+
+.hero.build::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, #1b1030, #3a1f52);
+  pointer-events: none;
+  animation: fade-away 1.4s 0.1s ease-out forwards;
+}
+
+.hero.build .sun {
+  animation: sun-rise 1.6s 0.2s var(--ease-out-expo) both;
+}
+
+@keyframes sun-rise {
+  from {
+    transform: translate(-50%, 70%) scale(0.7);
+  }
+}
+
+.hero.build .city-near > *,
+.hero.build .city-far > * {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pop-up 0.7s calc(0.5s + var(--i, 0) * 0.08s) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes pop-up {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.hero.build .city-windows {
+  animation: fade-in 0.6s 1.3s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.hero.build .midhills {
+  animation: roll-in 0.9s 0.7s var(--ease-out-expo) both;
+}
+
+.hero.build .ground {
+  animation: roll-in 0.9s 0.4s var(--ease-out-expo) both;
+}
+
+@keyframes roll-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+.hero.build .palm {
+  transform-origin: 50% 100%;
+  animation: grow 1s 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.hero.build .palm-right {
+  animation-delay: 1.3s;
+}
+
+.hero.build .pole {
+  transform-origin: 50% 100%;
+  animation: grow 0.8s 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.hero.build .flight-inner {
+  animation: fly-in 2.2s 1.6s var(--ease-out-expo) both, bob 4.5s 3.8s var(--ease-soft) infinite alternate;
+}
+
+.hero.build .crew-laurin {
+  animation: drop-in 0.9s 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) both, idle-bob-after 1.2s 3.4s steps(2, jump-none) infinite;
+}
+
+.hero.build .crew-clawd {
+  animation: drop-in 0.9s 2.75s cubic-bezier(0.34, 1.56, 0.64, 1) both, idle-bob-after 0.9s 3.65s steps(2, jump-none) infinite;
+}
+
+/* Separate name so it starts fresh: an already running idle-bob would keep its clock and override drop-in. */
+@keyframes idle-bob-after {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}
+
+@keyframes drop-in {
+  from {
+    transform: translateY(-110vh) rotate(-12deg);
+  }
+  70% {
+    transform: translateY(0) scale(1.12, 0.86);
+  }
+}
+
+.hero.build .crew::after {
+  animation: fade-in 0.4s 3.2s ease-out both;
+}
+
+.hero.build .hero-bubble {
+  animation: bubble-pop 0.5s 3.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes bubble-pop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.hero.build .billboard {
+  transform-origin: 50% 100%;
+  animation: grow 0.8s 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.hero.build .topbar,
+.hero.build ~ * .topbar,
+.build-topbar {
+  animation: fade-in 0.6s 3.6s ease-out both;
+}
+
+.hero.build .scroll-cue {
+  animation: fade-in 0.6s 3.9s ease-out both, cue 1.6s 4.5s var(--ease-soft) infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-rays,
+  .gift-open,
+  .gift-peek,
+  .gift-title,
+  .gift-bubble {
+    animation: none;
+  }
+
+  .hero.build *,
+  .hero.build::after,
+  .hero.build .flight-inner {
+    animation: none !important;
+  }
+
+  .hero.build::after {
+    display: none;
+  }
+}
+
+[data-theme='night'] .hero.build .city-windows {
+  animation: fade-in 0.6s 1.3s ease-out both, flicker 7s 2s steps(1, end) infinite;
+}
+
+.hero.build .crew-clawd.hop {
+  animation: hop 0.5s var(--ease-out-expo);
+}
+
+.car {
+  cursor: pointer;
+}
+
+.gift:focus {
+  outline: none;
+}
