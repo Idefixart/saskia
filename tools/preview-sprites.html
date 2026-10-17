@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Sprite preview</title>
+<style>
+  body { margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; font: 14px system-ui; }
+  .cell { padding: 24px; display: grid; place-items: center; gap: 8px; }
+  .cell.light { background: #FBF5EA; }
+  .cell.dark { background: #2A1830; color: #fff; --px-ink: #F7E7C9; }
+  .cell svg { width: 272px; height: auto; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<script type="module">
+  import { SPRITES } from '../assets/js/sprites.js';
+  import { renderSprite } from '../assets/js/pixel.js';
+  for (const theme of ['light', 'dark']) {
+    for (const name of Object.keys(SPRITES)) {
+      const cell = document.createElement('div');
+      cell.className = `cell ${theme}`;
+      cell.append(renderSprite(name), Object.assign(document.createElement('div'), { textContent: name }));
+      document.body.append(cell);
+    }
+  }
+</script>
+</body>
+</html>

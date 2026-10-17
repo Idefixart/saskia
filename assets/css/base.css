@@ -1,0 +1,302 @@
+/* Reset, typography, layout primitives and shared components. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-variation-settings: 'opsz' 16;
+  line-height: 1.55;
+  overflow-x: clip;
+  transition: background-color var(--dur) var(--ease-soft), color var(--dur) var(--ease-soft);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.02;
+  font-weight: 800;
+  font-stretch: 78%;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-1);
+  font-stretch: 85%;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border: var(--stroke) solid var(--line);
+  border-radius: var(--radius-s);
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+/* Film grain over everything, like a printed cartoon cel. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.12 0 0 0 0 0.2 0 0 0 1.1 -0.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* ---------- layout ---------- */
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--content));
+  margin-inline: auto;
+}
+
+.chapter {
+  position: relative;
+  padding-block: var(--space-section);
+}
+
+.chapter-head {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  max-width: 44rem;
+}
+
+.chapter-sign {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem 0.35rem;
+  background: var(--mustard);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-hard-s);
+  font-family: var(--font-pixel);
+  font-size: var(--step--1);
+  transform: rotate(-2deg);
+}
+
+.chapter-lead {
+  font-size: var(--step-1);
+  color: var(--text-soft);
+  max-width: 38rem;
+}
+
+/* ---------- components ---------- */
+.card {
+  position: relative;
+  background: var(--surface);
+  border: var(--stroke) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hard);
+  padding: clamp(1.1rem, 0.9rem + 1vw, 1.75rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0.7rem 1.25rem;
+  background: var(--mustard);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-hard-s);
+  font-weight: 700;
+  font-stretch: 90%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft);
+}
+
+.btn:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 4px 6px 0 var(--hard);
+}
+
+.btn:active {
+  transform: translate(3px, 4px);
+  box-shadow: 0 0 0 var(--hard);
+}
+
+.btn--pink {
+  background: var(--pink);
+}
+
+.btn--mint {
+  background: var(--mint);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Speech bubble in the characters' pixel voice. */
+.bubble {
+  position: relative;
+  display: inline-block;
+  padding: 0.7rem 0.95rem;
+  background: var(--cream);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow-hard-s);
+  font-family: var(--font-pixel);
+  font-size: var(--step-0);
+  line-height: 1.35;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  left: 1.6rem;
+  bottom: -14px;
+  width: 16px;
+  height: 14px;
+  background: var(--cream);
+  border-right: var(--stroke) solid var(--line);
+  border-bottom: var(--stroke) solid var(--line);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+/* Copy box: prompt text plus a copy button. */
+.copybox {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #2f1a2b;
+  color: #fbe9d0;
+  border: var(--stroke) solid var(--line);
+  border-radius: var(--radius-s);
+}
+
+.copybox pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+
+.copybox .btn {
+  justify-self: start;
+  min-height: 40px;
+  padding: 0.45rem 0.95rem;
+  font-size: var(--step--1);
+}
+
+.px {
+  image-rendering: pixelated;
+  overflow: visible;
+}
+
+.px-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 5.5s infinite;
+}
+
+@keyframes blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .px-eyes {
+    animation: none;
+  }
+}

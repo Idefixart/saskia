@@ -1,0 +1,123 @@
+/* Design tokens. Day = golden hour over Claude-Town, night = purple night with neon. */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('../fonts/bricolage-grotesque.woff2') format('woff2');
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('../fonts/pixelify-sans.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  /* surfaces and lines */
+  --bg: #fde7c4;
+  --surface: #fff3dc;
+  --surface-2: #fbe1b8;
+  --text: #3a1f35;
+  --text-soft: #6e4a66;
+  --line: #3a1f35;
+  --hard: #3a1f35;
+  --px-ink: #2a2019;
+
+  /* world */
+  --sky-top: #ec7397;
+  --sky-mid: #f69b7d;
+  --sky-low: #fad08a;
+  --sun: #ffe9ae;
+  --sun-glow: rgba(255, 233, 174, 0.55);
+  --cloud: #f9b6c6;
+  --city: #c9809f;
+  --city-2: #a9658b;
+  --window: #f8c9b6;
+  --palm-trunk: #8a4862;
+  --palm-leaf: #5f9e80;
+  --palm-leaf-2: #3e7a62;
+  --hill: #f3b36b;
+  --hill-2: #e59654;
+  --hill-shade: #d27f4a;
+  --grass: #7dbf8e;
+  --pole: #6b3a58;
+
+  /* accents */
+  --clawd: #d97757;
+  --mustard: #f2c14e;
+  --pink: #ec6f8e;
+  --mint: #8fd3b4;
+  --lilac: #b9a0d6;
+  --asphalt: #7b6185;
+  --cream: #fff3dc;
+
+  /* texture */
+  --grain-opacity: 0.32;
+  --grain-blend: multiply;
+
+  /* type */
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-pixel: 'Pixelify Sans', ui-monospace, monospace;
+  --step--1: clamp(0.86rem, 0.83rem + 0.15vw, 0.95rem);
+  --step-0: clamp(1.02rem, 0.97rem + 0.25vw, 1.15rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.25rem + 1.1vw, 2.15rem);
+  --step-3: clamp(2rem, 1.5rem + 2.4vw, 3.4rem);
+  --step-4: clamp(2.5rem, 1.6rem + 4.6vw, 5.6rem);
+
+  /* space and shape */
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --stroke: 3px;
+  --radius: 16px;
+  --radius-s: 10px;
+  --shadow-hard: 5px 6px 0 var(--hard);
+  --shadow-hard-s: 3px 4px 0 var(--hard);
+  --content: 72rem;
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.37, 0, 0.23, 1);
+  --dur-fast: 150ms;
+  --dur: 300ms;
+  --dur-slow: 700ms;
+}
+
+:root[data-theme='night'] {
+  color-scheme: dark;
+
+  --bg: #24152b;
+  --surface: #36203f;
+  --surface-2: #432a4d;
+  --text: #fbead2;
+  --text-soft: #d8bfd0;
+  --line: #f6dcbb;
+  --hard: #0f0812;
+  --px-ink: #f7e7c9;
+
+  --sky-top: #1b1030;
+  --sky-mid: #3a1f52;
+  --sky-low: #7a3f6e;
+  --sun: #fff1cf;
+  --sun-glow: rgba(255, 241, 207, 0.25);
+  --cloud: #5b3b72;
+  --city: #4c2c5c;
+  --city-2: #3a2148;
+  --window: #ffd36b;
+  --palm-trunk: #2e1838;
+  --palm-leaf: #3a5a5a;
+  --palm-leaf-2: #26403f;
+  --hill: #5e3a5e;
+  --hill-2: #4c2d4f;
+  --hill-shade: #3c2140;
+  --grass: #3f6b5c;
+  --pole: #1d0f22;
+
+  --grain-opacity: 0.22;
+  --grain-blend: soft-light;
+}

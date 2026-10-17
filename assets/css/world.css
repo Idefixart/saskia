@@ -1,0 +1,696 @@
+/* Claude-Town hero: sky, plane with birthday banner, skyline, hills, crew, billboard. */
+
+.topbar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem var(--gutter);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-pixel);
+  font-size: var(--step--1);
+  color: #3a1f35;
+  text-decoration: none;
+  padding: 0.35rem 0.7rem 0.35rem 0.45rem;
+  background: var(--cream);
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-hard-s);
+}
+
+.brand-clawd {
+  width: 26px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.3rem 0.85rem 0.3rem 0.35rem;
+  background: var(--cream);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-hard-s);
+  font-family: var(--font-pixel);
+  font-size: var(--step--1);
+  cursor: pointer;
+}
+
+.theme-toggle-knob {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--mustard);
+  border: var(--stroke) solid #3a1f35;
+  transition: transform var(--dur) var(--ease-out-expo), background-color var(--dur);
+}
+
+[data-theme='night'] .theme-toggle-knob {
+  background: #fff1cf;
+  box-shadow: inset -7px -3px 0 #b9a0d6;
+}
+
+/* ---------- hero frame ---------- */
+.hero {
+  --ground-h: clamp(170px, 30svh, 300px);
+  position: relative;
+  min-height: max(100svh, 640px);
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 42%, var(--sky-low) 72%);
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.sun {
+  position: absolute;
+  left: 64%;
+  bottom: calc(var(--ground-h) + 4svh);
+  width: clamp(150px, 24vw, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 18px var(--sun-glow), 0 0 0 46px color-mix(in srgb, var(--sun-glow) 45%, transparent);
+  transform: translateX(-50%);
+}
+
+.clouds {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 48%;
+  fill: var(--cloud);
+  opacity: 0.85;
+}
+
+.cloud-drift {
+  animation: drift 60s linear infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(60px);
+  }
+}
+
+.stars {
+  position: absolute;
+  inset: 0 0 40%;
+  opacity: 0;
+  transition: opacity var(--dur-slow);
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, #fff7e0 98%, transparent),
+    radial-gradient(2px 2px at 28% 8%, #fff7e0 98%, transparent),
+    radial-gradient(3px 3px at 44% 22%, #ffd36b 98%, transparent),
+    radial-gradient(2px 2px at 61% 12%, #fff7e0 98%, transparent),
+    radial-gradient(2px 2px at 78% 26%, #fff7e0 98%, transparent),
+    radial-gradient(3px 3px at 90% 9%, #f6b8c6 98%, transparent),
+    radial-gradient(2px 2px at 8% 40%, #fff7e0 98%, transparent),
+    radial-gradient(2px 2px at 36% 36%, #fff7e0 98%, transparent),
+    radial-gradient(2px 2px at 70% 42%, #fff7e0 98%, transparent),
+    radial-gradient(2px 2px at 95% 34%, #fff7e0 98%, transparent);
+}
+
+[data-theme='night'] .stars {
+  opacity: 1;
+}
+
+[data-theme='night'] .sun {
+  width: clamp(110px, 16vw, 220px);
+  bottom: calc(var(--ground-h) + 30svh);
+  left: 78%;
+}
+
+/* ---------- plane + banner ---------- */
+.flight {
+  position: absolute;
+  z-index: 6;
+  top: clamp(5rem, 14svh, 9.5rem);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--gutter);
+  pointer-events: none;
+}
+
+.flight-inner {
+  display: flex;
+  align-items: center;
+  animation: fly-in 2.4s var(--ease-out-expo) both, bob 4.5s 2.4s var(--ease-soft) infinite alternate;
+}
+
+@keyframes fly-in {
+  from {
+    transform: translateX(-120vw) rotate(-3deg);
+  }
+  to {
+    transform: translateX(0) rotate(0);
+  }
+}
+
+@keyframes bob {
+  to {
+    transform: translateY(-8px) rotate(-0.6deg);
+  }
+}
+
+.banner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.32em;
+  padding: 0.18em 0.55em 0.12em;
+  background: var(--cream);
+  color: #3a1f35;
+  border: var(--stroke) solid var(--line);
+  border-right-width: 14px;
+  border-right-color: var(--mustard);
+  border-radius: 4px;
+  box-shadow: 0 6px 0 rgba(58, 31, 53, 0.25);
+  font-size: clamp(2.1rem, 1.2rem + 4.2vw, 5rem);
+  font-stretch: 75%;
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-align: center;
+  animation: flutter 1.6s var(--ease-soft) infinite alternate;
+  transform-origin: right center;
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--stroke)) -14px calc(-1 * var(--stroke)) auto;
+  width: 14px;
+  border: var(--stroke) solid var(--line);
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.banner-name {
+  color: var(--pink);
+}
+
+@keyframes flutter {
+  to {
+    transform: skewY(-1.2deg) translateY(2px);
+  }
+}
+
+.rope {
+  width: clamp(26px, 4vw, 60px);
+  flex: none;
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2.5;
+}
+
+.plane {
+  width: clamp(104px, 14vw, 250px);
+  flex: none;
+  overflow: visible;
+  stroke: var(--line);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.plane-body,
+.plane-fin {
+  fill: var(--pink);
+}
+
+.plane-stripe {
+  stroke: var(--mustard);
+  stroke-width: 5;
+}
+
+.plane-window,
+.plane-nose {
+  fill: var(--cream);
+}
+
+.plane-wing {
+  fill: var(--mustard);
+}
+
+.plane-wheel {
+  fill: #3a1f35;
+}
+
+.plane-gear {
+  fill: none;
+}
+
+.plane-letter {
+  fill: var(--cream);
+  stroke: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.propeller rect {
+  fill: color-mix(in srgb, var(--cream) 70%, transparent);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 0.18s linear infinite;
+}
+
+@keyframes spin {
+  50% {
+    transform: scaleY(0.25);
+  }
+}
+
+/* ---------- city, hills, palms ---------- */
+.skyline {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  bottom: calc(var(--ground-h) + 6svh);
+  height: clamp(170px, 30svh, 320px);
+}
+
+.city-far {
+  fill: var(--city-2);
+  opacity: 0.55;
+}
+
+.city-near {
+  fill: var(--city);
+}
+
+.city-windows {
+  opacity: 0.55;
+}
+
+.window {
+  fill: var(--window);
+}
+
+[data-theme='night'] .city-windows {
+  opacity: 0.9;
+}
+
+.midhills {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  width: 100%;
+  bottom: calc(var(--ground-h) - 2svh);
+  height: clamp(110px, 18svh, 220px);
+}
+
+.midhill {
+  fill: var(--palm-leaf);
+  stroke: var(--line);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.bushes {
+  fill: var(--palm-leaf-2);
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.palm {
+  position: absolute;
+  z-index: 3;
+  bottom: calc(var(--ground-h) - 30px);
+  height: clamp(320px, 62svh, 640px);
+  width: auto;
+  overflow: visible;
+}
+
+.palm-left {
+  left: max(-70px, -4vw);
+}
+
+.palm-right {
+  right: max(-60px, -3vw);
+  height: clamp(260px, 50svh, 540px);
+}
+
+.palm-trunk {
+  fill: none;
+  stroke: var(--palm-trunk);
+  stroke-width: 22;
+  stroke-linecap: round;
+}
+
+.palm-rings {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 22;
+  stroke-dasharray: 3 13;
+  opacity: 0.35;
+}
+
+.palm-crown use {
+  fill: var(--palm-leaf);
+  stroke: var(--line);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.palm-crown use:nth-child(odd) {
+  fill: var(--palm-leaf-2);
+}
+
+.palm-crown {
+  animation: sway 6s var(--ease-soft) infinite alternate;
+}
+
+@keyframes sway {
+  to {
+    rotate: 3deg;
+  }
+}
+
+.pole {
+  position: absolute;
+  z-index: 3;
+  right: 18%;
+  bottom: calc(var(--ground-h) - 40px);
+  height: clamp(240px, 44svh, 520px);
+  width: auto;
+  overflow: visible;
+}
+
+.pole-post {
+  fill: var(--pole);
+}
+
+.pole-cap {
+  fill: var(--mustard);
+}
+
+.wire {
+  fill: none;
+  stroke: var(--pole);
+  stroke-width: 2.5;
+}
+
+.ground {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--ground-h);
+}
+
+.ground-top {
+  fill: var(--hill);
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.ground-shade {
+  fill: var(--hill-2);
+}
+
+.tufts {
+  fill: var(--grass);
+  stroke: var(--line);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.road {
+  fill: var(--asphalt);
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.road-line {
+  fill: none;
+  stroke: var(--mustard);
+  stroke-width: 3;
+}
+
+.car {
+  stroke: var(--line);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.car-body {
+  fill: var(--mustard);
+}
+
+.car-glass {
+  fill: #bfe3f5;
+}
+
+.car-line {
+  fill: none;
+  stroke-width: 2;
+}
+
+.car-wheel {
+  fill: #3a1f35;
+}
+
+.car-hub {
+  fill: var(--cream);
+  stroke-width: 2;
+}
+
+.car-light {
+  fill: var(--cream);
+  stroke-width: 2;
+}
+
+[data-theme='night'] .car-light {
+  fill: #ffe9ae;
+  filter: drop-shadow(0 0 6px #ffd36b);
+}
+
+/* ---------- crew on the hill ---------- */
+.crew {
+  position: absolute;
+  z-index: 8;
+  left: clamp(1rem, 10vw, 11rem);
+  bottom: calc(var(--ground-h) - 70px);
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: end;
+  column-gap: 0.4rem;
+}
+
+.crew::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 8%;
+  right: -30%;
+  bottom: -6px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(74, 31, 64, 0.32);
+  transform: skewX(-40deg);
+}
+
+.crew-laurin {
+  width: clamp(118px, 15vw, 210px);
+}
+
+.crew-clawd {
+  width: clamp(66px, 8.5vw, 118px);
+  cursor: pointer;
+}
+
+.crew-clawd.hop {
+  animation: hop 0.5s var(--ease-out-expo);
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-26px) rotate(-6deg);
+  }
+}
+
+.hero-bubble {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-bottom: 1.1rem;
+  max-width: 15rem;
+  font-size: var(--step--1);
+}
+
+/* ---------- billboard ---------- */
+.billboard {
+  position: absolute;
+  z-index: 7;
+  right: clamp(0.75rem, 6vw, 7rem);
+  bottom: calc(var(--ground-h) - 30px);
+  width: clamp(150px, 22vw, 300px);
+  padding-bottom: clamp(50px, 8svh, 110px);
+  color: #3a1f35;
+  text-decoration: none;
+}
+
+.billboard::before,
+.billboard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: calc(clamp(50px, 8svh, 110px) + 6px);
+  background: var(--pole);
+}
+
+.billboard::before {
+  left: 22%;
+}
+
+.billboard::after {
+  right: 22%;
+}
+
+.billboard-panel {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 0.9rem 0.85rem;
+  background: var(--pink);
+  border: var(--stroke) solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-hard);
+  transition: transform var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft);
+}
+
+.billboard:hover .billboard-panel {
+  transform: translate(-1px, -3px) rotate(-1deg);
+  box-shadow: 6px 9px 0 var(--hard);
+}
+
+[data-theme='night'] .billboard-panel {
+  box-shadow: var(--shadow-hard), 0 0 34px rgba(236, 111, 142, 0.75);
+}
+
+.billboard-kicker {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+}
+
+.billboard-title {
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(1.15rem, 0.8rem + 1.6vw, 2.1rem);
+  line-height: 0.95;
+}
+
+.billboard-cta {
+  justify-self: start;
+  margin-top: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  background: var(--cream);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ---------- scroll cue ---------- */
+.scroll-cue {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  padding: 0.4rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: var(--stroke) solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow-hard-s);
+  font-family: var(--font-pixel);
+  font-size: var(--step--1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 640px) {
+  .hero {
+    --ground-h: 230px;
+  }
+
+  .crew {
+    left: 0.75rem;
+    bottom: 96px;
+  }
+
+  .billboard {
+    right: 0.6rem;
+    bottom: 120px;
+    width: 148px;
+    padding-bottom: 40px;
+  }
+
+  .billboard::before,
+  .billboard::after {
+    height: 46px;
+  }
+
+  .pole {
+    display: none;
+  }
+
+  .billboard-cta {
+    white-space: nowrap;
+    font-size: 0.72rem;
+  }
+
+  .flight-inner {
+    margin-right: -0.5rem;
+  }
+
+  .palm-right {
+    right: -96px;
+  }
+
+  .palm-left {
+    left: -110px;
+  }
+
+  .hero-bubble {
+    max-width: 11.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flight-inner {
+    animation: none;
+  }
+
+  .banner,
+  .cloud-drift,
+  .palm-crown,
+  .propeller rect {
+    animation: none;
+  }
+}
