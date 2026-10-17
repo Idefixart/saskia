@@ -1,0 +1,17 @@
+{
+  "name": "laurin-buddy",
+  "version": "1.0.0",
+  "description": "Pixel-Laurin floats over the Windows screen and points where to click. MCP server for Claude Desktop.",
+  "type": "module",
+  "main": "server/index.js",
+  "private": true,
+  "license": "MIT",
+  "author": "Laurin",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build-sprite": "node scripts/build-sprite.mjs"
+  }
+}
